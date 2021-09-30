@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block lista %}
+      <li class="nav-item">
+        <a class="nav-link" href="/" aria-disabled="true">Principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="usuario" aria-disabled="true">Tabla</a>
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" href="/Graficas_1">Gráficas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mapa">Mapas</a>
+      </li>  
+      <li class="nav-item">
+        <a class="nav-link" href="admin">Corporativo</a>
+      </li>            
+      <li class="nav-item active">
+        <a class="nav-link" href="nosotros">Acerca de...<span class="sr-only">(current)</span></a>
+      </li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-4">ClimApp</h1>
+    <hr class="hr-titulo">
+        <p class="lead">
+            <ul>
+                <li><p align="justify">Es un proyecto desarrollado de forma colaborativa por varios investigadores de AGROSAVIA.</p></li>  
+            </ul>
+        </p>
+        <hr class="my-4">
+        <p><b>Investigadores:</b></p>
+            <ul>
+                <li>I1.</li>
+                <li>I2.</li> 
+                <li>I3.</li>
+                <li>I4.</li>
+                <li>I5.</li>   
+                <li>I6.</li> 
+            </ul>
+        <p><b>Soporte técnico:</b></p>
+            <ul>
+                <li>DTI -Agrosavia-.</li>
+            </ul>
+                          
+{% endblock %}

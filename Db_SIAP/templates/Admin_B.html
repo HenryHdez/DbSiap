@@ -1,0 +1,24 @@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--<div class="jumbotron" style="background: rgba(178,176,176,0.5);">-->
+        <h3><b>PANEL DE EDICIÓN DE LA TABLA</b></h3>
+        <hr class="my-4">
+        <p align="center">  
+                 
+            <table align="center">
+                <tr class="col-12 form-group" align="center">
+                    {%for i in Nom_col%}
+                           <th class="col-md-6 col-sm-12" align="center"> {{i}}</th>    
+                    {%endfor%}
+                </tr>
+    
+                {%for i in Etiquetas%}  
+                    <tr class="col-12 form-group" align="center">          
+                        {%for j in range(0,Cant2)%}
+                               <td class="col-md-6 col-sm-12" align="center"> {{i[j]}}</td>
+                        {%endfor%}
+                    </tr>
+                {%endfor%}
+             </table>   
+        </p>    
+        </div>
+    </div>

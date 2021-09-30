@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block lista %}
+      <li class="nav-item">
+        <a class="nav-link" href="/" aria-disabled="true">Principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="usuario" aria-disabled="true">Tabla</a>
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" href="/Graficas_1">Gráficas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mapa">Mapas</a>
+      </li>    
+      <li class="nav-item active">
+        <a class="nav-link" href="admin">Corporativo<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="nosotros">Acerca de...</a>
+      </li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-4">GESTIÓN CORPORATIVA</h1>
+    <hr class="hr-titulo">
+    <p align="justify" class="lead">{{aviso}}</p>
+    <hr class="my-4">
+     <form class="row" action = "http://localhost:8080/admin2" method = "POST">  
+
+        <table class="col-md-6 col-sm-12 form-row m-auto" align="center">
+            <tr class="col-12 form-group">
+               <td class="col-12"> <b>Usuario:</b> </td>
+               <td class="col-12"> <input type = "number" name = "Documentoa" placeholder="1234567" maxlength="15" required/> </td>
+            </tr>
+
+            <tr class="col-12 form-group">
+               <td class="col-12"> <b>Contraseña:</b> </td>
+               <td class="col-12"> <input type = "password" name = "Clavea" maxlength="10" placeholder="0000" required/> </td>
+            </tr>
+                                               
+            <tr class="botones-formulario">
+                <td>
+                  <input class="btn btn-info btn-enviar" type = "submit" value = "Ingresar"/>
+                </td>
+            </tr>
+        </table> 
+{% endblock %}
+
+

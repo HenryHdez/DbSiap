@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block lista %}
+      <li class="nav-item">
+        <a class="nav-link" href="/" aria-disabled="true">Principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="usuario" aria-disabled="true">Tabla</a>
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" href="/Graficas_1">Gráficas</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="mapa">Mapas<span class="sr-only">(current)</span></a>
+      </li>    
+      <li class="nav-item">
+        <a class="nav-link" href="admin">Corporativo</a>
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" href="nosotros">Acerca de...</a>
+      </li>        
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-4">{{rta}}</h1> 
+{% endblock %}
+
+

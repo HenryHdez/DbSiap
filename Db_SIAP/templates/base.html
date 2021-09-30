@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block lista %}
+      <li class="nav-item">
+        <a class="nav-link" href="/">Principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="usuario">Tabla<span class="sr-only">(current)</span></a>
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" href="/Graficas_1">Gráficas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mapa">Mapas</a>
+      </li>    
+      <li class="nav-item">
+        <a class="nav-link" href="admin">Corporativo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="nosotros">Acerca de...</a>
+      </li>
+
+{% endblock %}
+
+{% block content %}
+        <h1 class="display-4">DATOS REGISTRADOS</h1>
+        <hr class="hr-titulo">
+        <p align="justify" class="lead">Seleccione los parámetros de la consulta.</p>
+        <hr class="my-4"> 
+        <form class="row" action = "http://localhost:8080/informe" method = "POST">   
+        <!--<form class="row" action = "http://172.16.0.154:8080/informe" method = "POST">--> 
+             <p>  Desde: 
+                 <input type="date" name="Fecha_1" value="2021-03-23">
+                 <input type="time" name="Horas_1" value="10:00">
+                 Hasta:
+                 <input type="date" name="Fecha_2" value="2021-03-24">
+                 <input type="time" name="Horas_2" value="10:00">                 
+             </p>
+             <input class="btn btn-info btn-lg" style="width:200px;margin: auto;text-align: center;margin-top: -0.7%;" type = "submit" value = "Nueva Consulta" />
+             <a   class="btn btn-danger btn-lg" style="width:100px;margin: auto;text-align: center;margin-top: -0.7%;" href="/" role="button" >Salir</a> 
+             <br>  
+             <p>   
+             Estación:         
+             <select name="Estacion" style="height:40px;">
+                  <option value=1 selected>Finca Casateja Facatativá</option>
+                  <option value=2>C.I. Tibaitatá</option>
+                  <option value=3>Finca Vda Santan Isabel</option>
+              </select>
+            </p> 
+            <br> 
+        </form>	
+{% endblock %}
+
+
