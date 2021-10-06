@@ -1,5 +1,4 @@
 rpy2
-pyodbc
 threadpoolctl
 asn1crypto==1.3.0
 astroid==2.4.2
@@ -74,7 +73,6 @@ pyflakes==2.2.0
 Pygments==2.6.1
 PyLaTeX==1.4.0
 pylint==2.5.3
-pyodbc 
 sqlalchemy
 pyOpenSSL==19.0.0
 pyparsing==2.4.7

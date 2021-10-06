@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd                                      #Gestión de archivos de texto
 import os                                                #Hereda funciones del sistema operativo para su uso en PYTHON                    
 import base64                                            #Codifica contenido en base64 para su almacenamiento en una WEB
-import pyodbc                                            #Interfaz de conexión con la base de datos
 import threading
 import requests
 import geopandas as gpd
@@ -62,7 +61,9 @@ def Crear_Tabla(etiquetas, estacion):
     Texto=""
     for i in range(len(etiquetas)):
         if i==0:
-            Texto="CREATE TABLE Estacion_"+str(estacion)+" (Fecha VARCHAR(50), " 
+            Texto="CREATE TABLE SITB_Estacion_"+str(estacion)+" (Est"+str(estacion)+"_Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL, "
+        elif(i==1):    
+            Texto=Texto+"Est_Id VARCHAR(50), "+etiquetas[i]+"  VARCHAR(50), "
         elif(i==len(etiquetas)-1):
             Texto=Texto+etiquetas[i]+" NUMERIC(10,2));"
         else:
@@ -80,9 +81,12 @@ def operardb_geof(df, tabla, geom ,accion):
         cols = ", ".join([str(i) for i in df.columns.tolist()])
         for i,row in df.iterrows():
             sql = "INSERT INTO "+tabla+" (" +cols + ") VALUES (" + "%s,"*(len(row)-1) + "%s)"
-            cursor.execute(sql, tuple(row))
-            cnxn.commit()
-            print("Actualizado")
+            try:
+                cursor.execute(sql, tuple(row))
+                cnxn.commit()
+                print("Actualizado")
+            except:
+                print("No actualizado" + str(tuple(row)))
         return[]
             
     elif(accion=="Consulta"):
@@ -142,15 +146,16 @@ def Consultar_API(accion, estacion):
     #00206878 Inicio 2018-08-24 07:00:00 C.I. Tibaitatá 1535112000
     #31017600 al año
     #Consultar sensor
-    Sensor=operardb_geof(0, "Sen_Est_"+str(estacion), 0 ,"Consulta2")
-    llaves=list(Sensor['columnas'].values)
-    llaves.insert(0,'Fecha')
-    nombres_sens=list(Sensor['direccion'].values)
+    Sensor=operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Consulta2")
+    llaves=list(Sensor['Sen'+str(estacion)+'_Columnas'].values)
+    llaves.insert(0,'Est_Id')
+    llaves.insert(1,'Est'+str(estacion)+'_Fecha')
+    nombres_sens=list(Sensor['Sen'+str(estacion)+'_Direccion'].values)
     nombres_sens.insert(0,'date') 
     tam_lista=0
     
     try:
-        tabla=operardb_geof(0, "Estacion_"+str(estacion), 0 ,"Consulta2")
+        tabla=operardb_geof(0, "SITB_Estacion_"+str(estacion), 0 ,"Consulta2")
         Ser_e="002056BF"
         if(estacion==1):
             Ser_e="002056BF"
@@ -160,16 +165,16 @@ def Consultar_API(accion, estacion):
             Ser_e="0020687D"
     
         if(len(tabla)!=0):
-            TT=tabla['Fecha'].values
+            TT=tabla['Est'+str(estacion)+'_Fecha'].values
             Ultima_Fecha = datetime.strptime(TT[len(TT)-1], '%Y-%m-%d %H:%M:%S')
-            Ultima_Fecha = Ultima_Fecha.timestamp()                 
+            Ultima_Fecha = Ultima_Fecha.timestamp()+3600                
         else:
             Ultima_Fecha = 1514808000
             
         hoy=datetime.now()
         Fecha_actual = hoy.strftime("%Y-%m-%d %H:%M:00")
         Fecha_actual = datetime.strptime(Fecha_actual, '%Y-%m-%d %H:%M:%S')
-        Fecha_actual = int(Fecha_actual.timestamp()) 
+        Fecha_actual = int(Fecha_actual.timestamp())
         
         print(datetime.fromtimestamp(Fecha_actual))
         print(datetime.fromtimestamp(Ultima_Fecha))
@@ -185,10 +190,12 @@ def Consultar_API(accion, estacion):
          
         diferencia=Fecha_actual-Ultima_Fecha  
         while(31536000<=diferencia and tam_lista<100):
-            Ultima_Fecha=Ultima_Fecha+int(diferencia/4)
+            #Ultima_Fecha=Ultima_Fecha+int(diferencia/4)
+            #diferencia=Fecha_actual-Ultima_Fecha
+            Fecha_actual=Fecha_actual-int(diferencia/4)
             diferencia=Fecha_actual-Ultima_Fecha
             datos=Consultar_Estacion(Ser_e,str(Ultima_Fecha),str(Fecha_actual))  
-            tam_lista=len(datos)  
+            tam_lista=len(datos) 
     except:
         print("Creando tabla")
     
@@ -197,7 +204,7 @@ def Consultar_API(accion, estacion):
         
     elif(accion==1 and 2<int(tam_lista)):  
         #Crear vector de inicio
-        aux=["Fecha"]
+        aux=['Est_Id', 'Est'+str(estacion)+'_Fecha']
         dfg=pd.DataFrame(columns=llaves)
         for i in range(1,len(nombres_sens)):
             aux.append(0) 
@@ -206,16 +213,17 @@ def Consultar_API(accion, estacion):
             aux=None
             aux=mem
             for ind, j in enumerate(nombres_sens):
+                aux[0]=Ser_e
                 try:
                     temp=i[j]
                 except:
                     temp=0
                 if(temp!=None):
-                    aux[ind]=temp
+                    aux[ind+1]=temp
                 else:
-                    aux[ind]=0
+                    aux[ind+1]=0
             dfg.loc[len(dfg)]=aux
-        operardb_geof(dfg, "Estacion_"+str(estacion), 0 ,"Actualizar")  
+        operardb_geof(dfg, "SITB_Estacion_"+str(estacion), 0 ,"Actualizar")  
                           
 def Actualizar_pag():
     #0 Crear Estacion
@@ -243,28 +251,29 @@ def graficar_linea():
     DF_L=[]    
     Dicci=result2.to_dict()
     for i in range(1,4):
-        DF_L.append(operardb_geof(0, "Sen_Est_"+str(i), 0 ,"Consulta2"))
+        DF_L.append(operardb_geof(0, "SITB_SenEst"+str(i), 0 ,"Consulta2"))
 
-    Eti1=list(DF_L[0]['columnas'].values)
-    Eti2=list(DF_L[1]['columnas'].values)
-    Eti3=list(DF_L[2]['columnas'].values)
-    unidades1=DF_L[0]['unidades'].values
-    unidades2=DF_L[1]['unidades'].values
-    unidades3=DF_L[2]['unidades'].values
+    Eti1=list(DF_L[0]['Sen1_Columnas'].values)
+    Eti2=list(DF_L[1]['Sen2_Columnas'].values)
+    Eti3=list(DF_L[2]['Sen3_Columnas'].values)
+    unidades1=DF_L[0]['Uni_Simbolo'].values
+    unidades2=DF_L[1]['Uni_Simbolo'].values
+    unidades3=DF_L[2]['Uni_Simbolo'].values
            
     try:
         Fecha_1=Dicci['Fecha_1']+" "+Dicci['Horas_1']+":00"
         Fecha_2=Dicci['Fecha_2']+" "+Dicci['Horas_2']+":00"
         
         #Construcción del arreglo y filtrado
-        AR=operardb_geof(0, "Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
-        AR['Fecha'] = AR['Fecha'].astype('datetime64[ns]')
-        Filtro="Fecha >= "+"'"+Fecha_1+"'"+" and Fecha <= "+"'"+Fecha_2+"'"
+        AR=operardb_geof(0, "SITB_Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
+        Texto="Est"+str(Dicci['Estacion'])+"_Fecha"
+        AR[Texto] = AR[Texto].astype('datetime64[ns]')
+        Filtro=Texto+" >= "+"'"+Fecha_1+"'"+" and "+Texto+" <= "+"'"+Fecha_2+"'"
         AR=AR.query(Filtro)
         
         #Construccion del vector de salida
         y_g=[]
-        if(int(Dicci['Estacion'])==1):
+        if(int(Dicci['Estacion'])<=1):
             y_g=AR[Dicci['Sensores1']].values
             pos=Eti1.index(Dicci['Sensores1'])
             graficar_png(y_g,"Fecha",unidades1[pos],Eti1[pos]+" (Estación: "+str(Dicci['Estacion'])+")", Dicci['Fecha_1'], Dicci['Fecha_2'])
@@ -334,25 +343,25 @@ def Consultar_sensor(estacion):
             Faux=Faux.replace(")","_")
             Etiquetas.append([i['name'], Faux, i['unit'], i['decimals'], eti+"_"+j])
             
-    df=pd.DataFrame(Etiquetas, columns=['nombre', 'columnas', 'unidades', 'decimales', 'direccion'])
+    df=pd.DataFrame(Etiquetas, columns=["Sen"+str(estacion)+"_Nombre", "Sen"+str(estacion)+"_Columnas", "Uni_Simbolo", "Sen"+str(estacion)+"_Decimales", "Sen"+str(estacion)+"_Direccion"])
     #Consultar información previa
-    df1=operardb_geof(0, "Sen_Est_"+str(estacion), 0 ,"Consulta2")
+    df1=operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Consulta2")
     if(len(df1)<=len(df)):
         df1=df
     #Borrar
-    operardb_geof(0, "Sen_Est_"+str(estacion), 0 ,"Borrar")
+    operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Borrar")
     #Crear
-    Texto=("CREATE TABLE Sen_Est_"+str(estacion)+
-           " (nombre VARCHAR(50),"+ 
-           " columnas VARCHAR(50),"+
-           " unidades VARCHAR(50),"+ 
-           " decimales VARCHAR(50),"+
-           " direccion VARCHAR(50));")     
+    Texto=("CREATE TABLE SITB_SenEst"+str(estacion)+
+           " (Sen"+str(estacion)+"_Nombre VARCHAR(50),"+ 
+           " Sen"+str(estacion)+"_Columnas VARCHAR(50),"+
+           " Uni_Simbolo VARCHAR(50),"+ 
+           " Sen"+str(estacion)+"_Decimales VARCHAR(50),"+
+           " Sen"+str(estacion)+"_Direccion VARCHAR(50));")     
     operardb_geof(0, Texto, 0 ,"Crear")
     #Actualizar sensores 
-    operardb_geof(df1, "Sen_Est_"+str(estacion), 0 ,"Actualizar")
+    operardb_geof(df, "SITB_SenEst"+str(estacion), 0 ,"Actualizar")
 
-def Cargar_archivos_shp(Archivo, k, estado, usuario, Fecha, estacion):
+def Cargar_archivos_shp(Archivo, k, estado, usuario, Fecha):
     df = pd.DataFrame(Archivo)
     for i in range(len(df)):
         df['A']=estado
@@ -360,14 +369,12 @@ def Cargar_archivos_shp(Archivo, k, estado, usuario, Fecha, estacion):
         df['C']=Fecha 
         df['D']=usuario
         df['E']=Fecha 
-        if(k>0):
-            df['F']=estacion
     if(k==0):
         df.columns=['Ae_Descripcion', 'Ae_Area', 'Ae_Perimetro', 'Ae_Geometria', 'Ae_Estado', 'Ae_UsuarioReg', 'Ae_FechaReg', 'Ae_UsuarioMod', 'Ae_FechaMod']
     elif(k==1):
-        df.columns=['ArIn_CodPunto', 'ArIn_Area', 'ArIn_Perimetro', 'ArIn_Geometria', 'ArIn_Estado', 'ArIn_UsuarioReg', 'ArIn_FechaReg', 'ArIn_UsuarioMod', 'ArIn_FechaMod', 'Est_Id']
+        df.columns=['Est_Id', 'ArIn_Area', 'ArIn_Perimetro', 'ArIn_Geometria', 'ArIn_Estado', 'ArIn_UsuarioReg', 'ArIn_FechaReg', 'ArIn_UsuarioMod', 'ArIn_FechaMod']
     elif(k==2):
-        df.columns=['Est_CodPunto', 'Est_MunId', 'Est_Latitud', 'Est_Longitud', 'Est_Elevacion', 'Est_FechaIns', 'Est_Propietario', 'Est_Geometria', 'Est_Estado', 'Est_UsuarioReg', 'Est_FechaReg', 'Est_UsuarioMod', 'Est_FechaMod', 'Est_Id']
+        df.columns=['Est_Id', 'Mun_Id', 'Est_MunId', 'Est_Latitud', 'Est_Longitud', 'Est_Elevacion', 'Est_FechaIns', 'Est_Propietario', 'Est_Geometria', 'Est_Estado', 'Est_UsuarioReg', 'Est_FechaReg', 'Est_UsuarioMod', 'Est_FechaMod']
     df=df.astype(str)
     if(k==0):
         operardb_geof(df, "SITB_AreaEstudio",'0',"Actualizar")
@@ -417,9 +424,10 @@ def informe1():
         Fecha_1=Dicci['Fecha_1']+" "+Dicci['Horas_1']+":00"
         Fecha_2=Dicci['Fecha_2']+" "+Dicci['Horas_2']+":00"
         #Construcción del arreglo y filtrado
-        AR=operardb_geof(0, "Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
-        AR['Fecha'] = AR['Fecha'].astype('datetime64[ns]')
-        Filtro="Fecha >= "+"'"+Fecha_1+"'"+" and Fecha <= "+"'"+Fecha_2+"'"
+        AR=operardb_geof(0, "SITB_Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
+        Texto="Est"+str(Dicci['Estacion'])+"_Fecha"
+        AR[Texto] = AR[Texto].astype('datetime64[ns]')
+        Filtro=Texto+" >= "+"'"+Fecha_1+"'"+" and "+Texto+" <= "+"'"+Fecha_2+"'"
         AR=AR.query(Filtro)
         Filas = AR.to_numpy().tolist()
         #Exportar a excel
@@ -490,11 +498,11 @@ def graf():
 def graf_a():
     col_list=[]
     for i in range(1,4):       
-        AR=operardb_geof(0, "Sen_Est_"+str(i), 0 ,"Consulta2")
+        AR=operardb_geof(0, "SITB_SenEst"+str(i), 0 ,"Consulta2")
         col_list.append(AR)
-    Eti1=col_list[0]['columnas'].values
-    Eti2=col_list[1]['columnas'].values
-    Eti3=col_list[2]['columnas'].values
+    Eti1=col_list[0]['Sen1_Columnas'].values
+    Eti2=col_list[1]['Sen2_Columnas'].values
+    Eti3=col_list[2]['Sen3_Columnas'].values
 
     return render_template('graficas.html',
                            Etiquetas1=Eti1,
@@ -506,10 +514,10 @@ def graf_a():
 
 @app.route('/mapa4')
 def maps4():
-    df=operardb_geof([], 'Ima_Raster', 0 ,"Consulta2")
+    df=operardb_geof([], 'SITB_ImgRaster', 0 ,"Consulta2")
     print(df)
-    Nomb_Ima=df['Nom_Imagen'].values
-    Ima=df['Imagen'].values
+    Nomb_Ima=df['Ima_Nom'].values
+    Ima=df['Ima_Imagen'].values
     ruta = 'static/Temp_ima/'+Nomb_Ima[0]+'.TIF'
     
     Leer_Ima_base64(ruta, Ima[0])
@@ -543,12 +551,12 @@ def maps():
     Archivo1 = gpd.GeoDataFrame(dfa1, geometry='Ae_Geometria')
     #Traer Archivo 2 de la base de datos y convertirlo en objeto para verlo
     df1=operardb_geof([], "SITB_AreaInfluencia", "ArIn_Geometria", "Consulta")
-    dfa1=df1.drop(['ArIn_Estado', 'ArIn_UsuarioReg', 'ArIn_FechaReg', 'ArIn_UsuarioMod', 'ArIn_FechaMod', 'Est_Id'], axis=1)
+    dfa1=df1.drop(['ArIn_Estado', 'ArIn_UsuarioReg', 'ArIn_FechaReg', 'ArIn_UsuarioMod', 'ArIn_FechaMod'], axis=1)
     dfa1['ArIn_Geometria'] = dfa1['ArIn_Geometria'].apply(wkt.loads)
     Archivo2 = gpd.GeoDataFrame(dfa1, geometry='ArIn_Geometria')
     #Traer Archivo 3 de la base de datos y convertirlo en objeto para verlo
     df1=operardb_geof([], "SITB_Estacion", "Est_Geometria", "Consulta")
-    dfa1=df1.drop(['Est_Estado', 'Est_UsuarioReg', 'Est_FechaReg', 'Est_UsuarioMod', 'Est_FechaMod', 'Est_Id'], axis=1)
+    dfa1=df1.drop(['Est_Estado', 'Est_UsuarioReg', 'Est_FechaReg', 'Est_UsuarioMod', 'Est_FechaMod'], axis=1)
     dfa1['Est_Geometria'] = dfa1['Est_Geometria'].apply(wkt.loads)
     Archivo3 = gpd.GeoDataFrame(dfa1, geometry='Est_Geometria')
     
@@ -645,7 +653,7 @@ def admin_bd4():
     if('opcion_lista' in globals()):
         Eti_tb=opcion_lista.get('Tabla')
     else:
-        Eti_tb="Estacion_1"
+        Eti_tb="SITB_Estacion_1"
         
     if(OPT=="Consulta" or OPT=="Borrar1"):
         ET=[]
@@ -654,11 +662,10 @@ def admin_bd4():
             A=Lista_sql.tail(t)
         else:
             A=Lista_sql
-            if(Eti_tb=="Ima_Raster"):
-                A=A.drop(['Imagen'], axis=1)
+            if(Eti_tb=="SITB_ImgRaster"):
+                A=A.drop(['Ima_Imagen'], axis=1)
             elif(Eti_tb=="SITB_AreaEstudio"):
                 A=A.drop(['Ae_Geometria'], axis=1)
-                print(A)
             elif(Eti_tb=="SITB_AreaInfluencia"):
                 A=A.drop(['ArIn_Geometria'], axis=1)
             elif(Eti_tb=="SITB_Estacion"):
@@ -673,7 +680,7 @@ def admin_bd4():
         return render_template('Admin_B.html', 
                                Nom_col=NC,
                                Etiquetas=ET,
-                               Cant2=can)    
+                               Cant2=len(NC))    
     elif(OPT=="Crear"):
         return render_template('Admin_C.html', texto="Ingrese datos para generar la tabla.")
     else:
@@ -683,7 +690,7 @@ def admin_bd4():
             return Sensores(2,"00206878.")
         elif(Eti_tb=="Sen_Est_3"):
             return Sensores(3,"0020687D.")
-        elif(Eti_tb=="Ima_Raster"):
+        elif(Eti_tb=="SITB_ImgRaster"):
             return render_template('Admin_E.html', texto="Diligencie este formulario.")
         elif(Eti_tb=="SITB_AreaEstudio"):
             return render_template('Admin_F.html', texto="Diligencie este formulario.")
@@ -691,6 +698,8 @@ def admin_bd4():
             return render_template('Admin_G.html', texto="Diligencie este formulario.")
         elif(Eti_tb=="SITB_Estacion"):
             return render_template('Admin_H.html', texto="Diligencie este formulario.")
+        elif(Eti_tb=="SITB_EstacionVar"):
+            return render_template('Admin_K.html', texto="Diligencie este formulario.")
         else:
             return render_template('RTA_2.html', rta="No es posible modificar los registros de esta tabla.")    
 
@@ -713,12 +722,24 @@ def admin_bd6():
             try:
                 archivo = request.files['adjunto']
                 nombre_archivo=os.path.join(uploads_dir, secure_filename(archivo.filename))
-                archivo.save(nombre_archivo)         
-                aux=[[Formu['Nomima']], [Formu['Txt']], [Formu['Fecha_reg']+" "+Formu['Horas_reg']], [Formu['Nomusu']], [Crear_archivo_base_64(nombre_archivo)]]
+                archivo.save(nombre_archivo)
+                var_id=0
+                if(Formu['Txt']=="Capacidad de campo del suelo"):
+                    var_id=8
+                elif(Formu['Txt']=="Humedad relativa promedio multianual"):
+                    var_id=2
+                elif(Formu['Txt']=="Punto de marchitez permanente"):
+                    var_id=7
+                elif(Formu['Txt']=="Precipitación promedio multianual"):
+                    var_id=3
+                elif(Formu['Txt']=="Temperatura mínima del aire promedio multianual"):
+                    var_id=6
+                      
+                aux=[[var_id], [Formu['Nomima']], [Formu['Txt']], [Crear_archivo_base_64(nombre_archivo)] , [Formu['Fecha_reg']+" "+Formu['Horas_reg']], [Formu['Nomusu']], [Formu['Fecha_reg']+" "+Formu['Horas_reg']], [Formu['Nomusu']]]
                 df = pd.DataFrame(aux)
                 df=df.transpose()
-                df.columns= ['Nom_Imagen', 'Descripcion','Fecha_reg', 'Usuario', 'Imagen']
-                operardb_geof(df, 'Ima_Raster', 0 ,"Actualizar")                
+                df.columns= ['Var_Id', 'Ima_Nom','Ima_Desc', 'Ima_Imagen', 'Ima_FechaReg', 'Ima_UsuarioReg', 'Ima_FechaMod', 'Ima_UsuarioMod']
+                operardb_geof(df, 'SITB_ImgRaster', 0 ,"Actualizar")                
                 os.remove(nombre_archivo)
             except:
                 return render_template('RTA_2.html', rta="No se ha cargado el registro con exito")
@@ -738,7 +759,7 @@ def admin_bd7():
                     Lista_nomb.append(nombre_archivo)
                 str_match = [s for s in Lista_nomb if s.__contains__(".shp")]
                 Arch = gpd.read_file(str_match[0])
-                Cargar_archivos_shp(Arch, 0, Formu['Esta'], Formu['Nomusu'], Formu['Fecha_reg']+" "+Formu['Horas_reg'], '002056BF')   
+                Cargar_archivos_shp(Arch, 0, Formu['Esta'], Formu['Nomusu'], Formu['Fecha_reg']+" "+Formu['Horas_reg'])   
                 for i in Lista_arch:
                     nombre_archivo=os.path.join(uploads_dir, i.filename)              
                     os.remove(nombre_archivo)
@@ -760,7 +781,7 @@ def admin_bd8():
                     Lista_nomb.append(nombre_archivo)
                 str_match = [s for s in Lista_nomb if s.__contains__(".shp")]
                 Arch = gpd.read_file(str_match[0])
-                Cargar_archivos_shp(Arch, 1, Formu['Esta'], Formu['Nomusu'], Formu['Fecha_reg']+" "+Formu['Horas_reg'], Formu['Cod_Esta'])   
+                Cargar_archivos_shp(Arch, 1, Formu['Esta'], Formu['Nomusu'], Formu['Fecha_reg']+" "+Formu['Horas_reg'])   
                 for i in Lista_arch:
                     nombre_archivo=os.path.join(uploads_dir, i.filename)              
                     os.remove(nombre_archivo)
@@ -782,7 +803,7 @@ def admin_bd9():
                     Lista_nomb.append(nombre_archivo)
                 str_match = [s for s in Lista_nomb if s.__contains__(".shp")]
                 Arch = gpd.read_file(str_match[0])
-                Cargar_archivos_shp(Arch, 2, Formu['Esta'], Formu['Nomusu'], Formu['Fecha_reg']+" "+Formu['Horas_reg'], Formu['Cod_Esta'])   
+                Cargar_archivos_shp(Arch, 2, Formu['Esta'], Formu['Nomusu'], Formu['Fecha_reg']+" "+Formu['Horas_reg'])   
                 for i in Lista_arch:
                     nombre_archivo=os.path.join(uploads_dir, i.filename)              
                     os.remove(nombre_archivo)
@@ -790,12 +811,153 @@ def admin_bd9():
                 return render_template('RTA_2.html', rta="No se ha cargado el registro con exito")
         return render_template('RTA_2.html', rta="Registro actualizado con exito.")
 
+@app.route('/admin10', methods = ['POST','GET'])
+def admin_bd10():
+    global Lista_sql
+    global Formu2
+    if('Formu2' in globals()):
+        Eti_tb=Formu2.get('Tabla')
+    else:
+        Eti_tb="SITB_Estacion_1"
+        
+    ET=[]
+    if(len(Lista_sql)>100):
+        t=100
+        A=Lista_sql.tail(t)
+    else:
+        A=Lista_sql
+        if(Eti_tb=="SITB_ImgRaster"):
+            A=A.drop(['Ima_Imagen'], axis=1)
+        elif(Eti_tb=="SITB_AreaEstudio"):
+            A=A.drop(['Ae_Geometria'], axis=1)
+        elif(Eti_tb=="SITB_AreaInfluencia"):
+            A=A.drop(['ArIn_Geometria'], axis=1)
+        elif(Eti_tb=="SITB_Estacion"):
+            A=A.drop(['Est_Geometria'], axis=1)
+    for i,row in A.iterrows():
+        ET.append(row)
+    NC=A.columns.values
+    return render_template('Admin_B.html', 
+                           Nom_col=NC,
+                           Etiquetas=ET,
+                           Cant2=len(NC))    
+
+@app.route('/admin11', methods = ['POST','GET'])
+def admin_bd11():
+    if request.method == 'POST':
+        Formu=request.form
+        if(request.files['adjunto'].filename!=''):
+            try:
+                archivo = request.files['adjunto']
+                nombre_archivo=os.path.join(uploads_dir, secure_filename(archivo.filename))
+                archivo.save(nombre_archivo)
+                df=Leer_excel_df(nombre_archivo, [Formu['Fecha_reg']+" "+Formu['Horas_reg']], [Formu['Nomusu']])  
+                operardb_geof(df, 'SITB_EstacionVar', 0 ,"Actualizar")                
+                os.remove(nombre_archivo)
+            except:
+                return render_template('RTA_2.html', rta="No se ha cargado el registro con exito")
+        return render_template('RTA_2.html', rta="Registro actualizado con exito.")
+
+
+@app.route('/busqueda', methods = ['POST','GET'])
+def busque_pag():
+    global Lista_sql
+    global Formu2
+    Lista_con=operardb_geof(0, 0, 0 ,"Consulta3")
+    if request.method == 'POST':
+        Formu2=request.form
+        Lista_sql=operardb_geof(0, Formu2.get('Tabla'), 0 ,"Consulta2")
+    else:
+        Lista_sql=Lista_con
+    etiquetas=[]
+    for i in Lista_con['name']:
+        etiquetas.append(i)
+    return render_template('Admin_I.html', 
+                           eti=etiquetas,
+                           Cant1=len(etiquetas)
+                           )    
+    
 def correr_pag():
     app.run(host='0.0.0.0', port='8080')
 
+def Leer_excel_df(ruta, fecha, usuario):
+    Excel=pd.ExcelFile(ruta)
+    Hojas=Excel.sheet_names
+    Li=[]
+    Li2=[]
+    anno="1900"
+    for i in Hojas:
+        Ar=Excel.parse(i)
+        NC=list(Ar.columns)
+        if(i=='Brillo_solar'):
+            Var=1
+        elif(i=='Humedad_relativa'):
+            Var=2
+        elif(i=='Precipitacion'):
+            Var=3        
+        elif(i=='Temperatura_maxima'):
+            Var=4
+        elif(i=='Temperatura_media'):
+            Var=5
+        elif(i=='Temperatura_minima'):
+            Var=6
+        else:
+            Var=0
+        for y, j in Ar.iterrows():
+            Li.append(Var)
+            for k in NC:
+                if(k=='COD' or k=='ESTACION' or k=='LAT' or k=='LONG' or k=='ELEV' or k=='ALTURA' or k=='AÑO' or k=='ANO'):
+                    Li.append(j[k])
+                    if(k=='AÑO' or k=='ANO'):
+                        anno=str(j[k])
+                elif(k=='ENE' or k=='FEB' or k=='MAR' or k=='ABR' or k=='MAY' or k=='JUN' or  
+                     k=='JUL' or k=='AGO' or k=='SEP' or k=='OCT' or k=='NOV' or k=='DIC'):
+                    if(k=='ENE'):
+                        b="01"
+                        c="31"
+                    elif(k=='FEB'):
+                        b="02"
+                        c="28"
+                    elif(k=='MAR'):
+                        b="03"
+                        c="31"
+                    elif(k=='ABR'):
+                        b="04"
+                        c="30"
+                    elif(k=='MAY'):
+                        b="05"
+                        c="31"
+                    elif(k=='JUN'):
+                        b="06"
+                        c="30"
+                    elif(k=='JUL'):
+                        b="07"
+                        c="31"
+                    elif(k=='AGO'):
+                        b="08"
+                        c="31"
+                    elif(k=='SEP'):
+                        b="09"
+                        c="30"
+                    elif(k=='OCT'):
+                        b="10"
+                        c="31"
+                    elif(k=='NOV'):
+                        b="11"
+                        c="30"
+                    elif(k=='DIC'):
+                        b="12"
+                        c="31"
+                    a=[anno+"-"+b+"-"+c+" 12:00:00"]
+                    Li2.append(Li+a+[j[k]]+fecha+usuario+fecha+usuario)
+            Li=[]
+    df=pd.DataFrame(Li2, columns=['Var_Id','Est_Id', 'EsVa_Estacion', 'EsVa_Latitud', 'EsVa_Longitud', 'EsVa_Altura',
+                                  'EsVa_Annio', 'EsVa_Fecha', 'EsVa_Valor', 'EsVa_FechaReg', 'EsVa_UsuarioReg', 'EsVa_FechaMod', 'EsVa_UsuarioMod'])
+    return df
+        
 #Función principal    
 if __name__ == '__main__':
-    hilo1 = threading.Thread(target=Actualizar_pag)
+#    hilo1 = threading.Thread(target=Actualizar_pag)
     hilo2 = threading.Thread(target=correr_pag)
-    hilo1.start()
+#    hilo1.start()
     hilo2.start()  

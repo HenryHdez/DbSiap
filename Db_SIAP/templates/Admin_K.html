@@ -1,0 +1,45 @@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--<div class="jumbotron" style="background: rgba(178,176,176,0.5);">-->
+        <h3><b>PANEL DE EDICIÓN DE LA TABLA</b></h3>
+        <hr class="my-4">
+        <p>{{texto}}</p>
+        
+        <form class="row" action = "http://localhost:8080/admin11" method = "POST"  enctype="multipart/form-data"> 
+        <table align="center">
+
+             <tr>
+                 <td style="width:400px">Usuario que registra:</td>
+                 <td style="width:400px">
+                 <input type = "text" name = "Nomusu" placeholder="Nombre usuario" style="width : 295px; text-align:center;" maxlength="20" required/>
+                 </td>
+             </tr>
+
+             <tr>
+                 <td style="width:400px">
+                 Fecha y hora de registro:
+                 </td>
+                 <td style="width:400px">
+                 <input type="date" name="Fecha_reg" value="2021-03-23">
+                 <input type="time" name="Horas_reg" value="11:00">
+                 </td>
+             </tr>
+
+             
+             <tr>       
+                 <td style="width:400px">
+                 Seleccione archivo: 
+                 </td>
+                 <td style="width:400px">              
+                 <input type="file" name="adjunto" accept=".xlsx, .xls" value="Seleccionar archivo" required> 
+                 </td>
+             </tr>
+             
+             <tr>
+                 <td style="width:400px">
+                     <input class="btn btn-info btn-lg" style="width:200px;" type = "submit" value = "Cargar" />
+                 </td>
+             </tr>
+             </table>
+             
+             
+        </form>

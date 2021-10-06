@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block lista %}
+      <li class="nav-item">
+        <a class="nav-link" href="/">Principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="usuario">Tabla</a>
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" href="/Graficas_1">Gráficas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mapa">Mapas</a>
+      </li>    
+      <li class="nav-item active">
+        <a class="nav-link" href="busqueda">Consulta<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin">Corporativo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="nosotros">Acerca de...</a>
+      </li>
+{% endblock %}
+
+{% block content %}
+
+        <h1 class="display-4">CONSULTA DE LA BASE DE DATOS</h1>
+        <hr class="hr-titulo">
+        <p align="justify" class="lead">Seleccione una tabla para continuar.</p>
+        <hr class="my-4">    
+        <form class="row" action = "http://localhost:8080/busqueda" method = "POST">  
+            <p>              
+             Seleccione tabla:           
+             <select id="Tabla" name="Tabla" style="width:250px; height:30px">
+                 <option value={{eti[0]}} selected>{{eti[0]}}</option>
+                 {%for j in range(1,Cant1)%}
+                       <option value={{eti[j]}}>{{eti[j]}}</option>
+                 {%endfor%}
+             </select>       
+
+             <input   class="btn btn-info btn-lg" style="width:200px; margin: auto;text-align: center;"  type = "submit" value = "Ejecutar"> 
+             <a   class="btn btn-danger btn-lg" style="width:200px;margin: auto;text-align: center;" href="/" role="button" >Salir</a> 
+             
+             <br>   
+            </p> 
+                        
+
+            <iframe class="m-auto shadow-sm p-3 mb-5 bg-light rounded" width="100%" height="500" src="admin10" name="pag" marginheight="0" marginwidth="0" scrolling="yes"></iframe>
+            
+        </form>	
+              
+{% endblock %}
+
+
