@@ -4,17 +4,17 @@
 ##from flask_socketio import SocketIO
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd                                      #Gestión de archivos de texto
-import os                                                #Hereda funciones del sistema operativo para su uso en PYTHON                    
-import base64                                            #Codifica contenido en base64 para su almacenamiento en una WEB
+import pandas as pd                                              #Gestión de archivos de texto
+import os                                                        #Hereda funciones del sistema operativo para su uso en PYTHON                    
+import base64                                                    #Codifica contenido en base64 para su almacenamiento en una WEB
 import threading
 import requests
 import geopandas as gpd
 import pymssql 
 import contextily as ctx
-from werkzeug.utils import secure_filename               #Encriptar información archivos
-from flask import Flask, request, render_template        #Interfaz gráfica WEB
-from time import sleep                                   #Suspensión temporal
+from werkzeug.utils import secure_filename                       #Encriptar información archivos
+from flask import Flask, request, render_template                #Interfaz gráfica WEB
+from time import sleep                                           #Suspensión temporal
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from requests.auth import AuthBase
 from datetime import datetime
@@ -698,7 +698,7 @@ def admin_bd4():
             return render_template('Admin_G.html', texto="Diligencie este formulario.")
         elif(Eti_tb=="SITB_Estacion"):
             return render_template('Admin_H.html', texto="Diligencie este formulario.")
-        elif(Eti_tb=="SITB_EstacionVar"):
+        elif(Eti_tb=="SITB_EstacionVarEdafo"):
             return render_template('Admin_K.html', texto="Diligencie este formulario.")
         else:
             return render_template('RTA_2.html', rta="No es posible modificar los registros de esta tabla.")    
@@ -852,7 +852,7 @@ def admin_bd11():
                 nombre_archivo=os.path.join(uploads_dir, secure_filename(archivo.filename))
                 archivo.save(nombre_archivo)
                 df=Leer_excel_df(nombre_archivo, [Formu['Fecha_reg']+" "+Formu['Horas_reg']], [Formu['Nomusu']])  
-                operardb_geof(df, 'SITB_EstacionVar', 0 ,"Actualizar")                
+                operardb_geof(df, 'SITB_EstacionVarEdafo', 0 ,"Actualizar")                
                 os.remove(nombre_archivo)
             except:
                 return render_template('RTA_2.html', rta="No se ha cargado el registro con exito")
@@ -951,13 +951,14 @@ def Leer_excel_df(ruta, fecha, usuario):
                     a=[anno+"-"+b+"-"+c+" 12:00:00"]
                     Li2.append(Li+a+[j[k]]+fecha+usuario+fecha+usuario)
             Li=[]
-    df=pd.DataFrame(Li2, columns=['Var_Id','Est_Id', 'EsVa_Estacion', 'EsVa_Latitud', 'EsVa_Longitud', 'EsVa_Altura',
+    df=pd.DataFrame(Li2, columns=['VarEda_Id','Est_Id', 'EsVa_Estacion', 'EsVa_Latitud', 'EsVa_Longitud', 'EsVa_Altura',
                                   'EsVa_Annio', 'EsVa_Fecha', 'EsVa_Valor', 'EsVa_FechaReg', 'EsVa_UsuarioReg', 'EsVa_FechaMod', 'EsVa_UsuarioMod'])
     return df
         
 #Función principal    
 if __name__ == '__main__':
-#    hilo1 = threading.Thread(target=Actualizar_pag)
+    hilo1 = threading.Thread(target=Actualizar_pag)
     hilo2 = threading.Thread(target=correr_pag)
-#    hilo1.start()
+    hilo1.start()
     hilo2.start()  
+    
