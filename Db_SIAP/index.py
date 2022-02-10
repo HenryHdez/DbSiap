@@ -180,10 +180,14 @@ def Consultar_API(accion, estacion):
         print(datetime.fromtimestamp(Ultima_Fecha))
         
         datos=Consultar_Estacion(Ser_e,str(Ultima_Fecha),str(Fecha_actual))
+        
         diferencia=Fecha_actual-Ultima_Fecha
+        print(diferencia)
         tam_lista=len(datos)
         
         while(tam_lista>8000):
+            print("asd")
+            print(Fecha_actual)
             Fecha_actual=Fecha_actual-int(diferencia/10)
             datos=Consultar_Estacion(Ser_e,str(Ultima_Fecha),str(Fecha_actual))  
             tam_lista=len(datos)
@@ -192,6 +196,8 @@ def Consultar_API(accion, estacion):
         while(31536000<=diferencia and tam_lista<100):
             #Ultima_Fecha=Ultima_Fecha+int(diferencia/4)
             #diferencia=Fecha_actual-Ultima_Fecha
+            print("ssss")
+            print(Fecha_actual)
             Fecha_actual=Fecha_actual-int(diferencia/4)
             diferencia=Fecha_actual-Ultima_Fecha
             datos=Consultar_Estacion(Ser_e,str(Ultima_Fecha),str(Fecha_actual))  
@@ -230,7 +236,6 @@ def Actualizar_pag():
     #1 Actualizar Estacion
     conta=1
     while 1:
-        sleep(7200)
         print("Estacion "+str(conta))
         try:
             Consultar_API(0, conta)
@@ -243,6 +248,7 @@ def Actualizar_pag():
         conta=conta+1
         if(conta==4):
             conta=1
+        sleep(7200)
             
 def graficar_linea():
     global result2
@@ -345,11 +351,14 @@ def Consultar_sensor(estacion):
             
     df=pd.DataFrame(Etiquetas, columns=["Sen"+str(estacion)+"_Nombre", "Sen"+str(estacion)+"_Columnas", "Uni_Simbolo", "Sen"+str(estacion)+"_Decimales", "Sen"+str(estacion)+"_Direccion"])
     #Consultar información previa
-    df1=operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Consulta2")
-    if(len(df1)<=len(df)):
-        df1=df
-    #Borrar
-    operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Borrar")
+    try:
+        df1=operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Consulta2")
+        if(len(df1)<=len(df)):
+            df1=df
+        #Borrar
+        operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Borrar")
+    except:
+        print("Crear tabla")
     #Crear
     Texto=("CREATE TABLE SITB_SenEst"+str(estacion)+
            " (Sen"+str(estacion)+"_Nombre VARCHAR(50),"+ 
