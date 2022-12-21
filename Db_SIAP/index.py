@@ -11,7 +11,7 @@ import threading
 import requests
 import geopandas as gpd
 import pymssql 
-import contextily as ctx
+#import contextily as ctx
 from werkzeug.utils import secure_filename                       #Encriptar información archivos
 from flask import Flask, request, render_template                #Interfaz gráfica WEB
 from time import sleep                                           #Suspensión temporal
@@ -20,9 +20,9 @@ from requests.auth import AuthBase
 from datetime import datetime
 from dateutil.tz import tzlocal
 from shapely import wkt
-from Crypto.Hash import HMAC
-from Crypto.Hash import SHA256
-from requests.auth import AuthBase
+#from Crypto.Hash import HMAC
+#from Crypto.Hash import SHA256
+#from requests.auth import AuthBase
 
 #Generación de la interfaz WEB
 app = Flask(__name__)
@@ -61,7 +61,7 @@ def Crear_Tabla(etiquetas, estacion):
     Texto=""
     for i in range(len(etiquetas)):
         if i==0:
-            Texto="CREATE TABLE SITB_Estacion_"+str(estacion)+" (Est"+str(estacion)+"_Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL, "
+            Texto="CREATE TABLE dbo.SITB_Estacion_"+str(estacion)+" (Est"+str(estacion)+"_Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL, "
         elif(i==1):    
             Texto=Texto+"Est_Id VARCHAR(50), "+etiquetas[i]+"  VARCHAR(50), "
         elif(i==len(etiquetas)-1):
@@ -71,11 +71,14 @@ def Crear_Tabla(etiquetas, estacion):
     operardb_geof(0, Texto, 0 ,"Crear")
 
 def operardb_geof(df, tabla, geom ,accion):
-    cnxn = pymssql.connect(host='172.16.11.44\MSSQL2016DSC', 
-                           database='DbSiap', 
-                           user='WebSiap', 
-                           password='W4bS1ap') 
-    
+#    cnxn = pymssql.connect(host='172.16.11.44\MSSQL2016DSC', 
+#                           database='DbSiap', 
+#                           user='WebSiap', 
+#                           password='W4bS1ap') 
+    cnxn = pymssql.connect(host='COMOSDSQL08\MSSQL2016DEX',
+                           database='SEMapa',
+                           user='WebSeMapa',
+                           password='rdTGWjLYWIH6e0PKeXYl')    
     if(accion=="Actualizar"):
         cursor = cnxn.cursor()
         cols = ", ".join([str(i) for i in df.columns.tolist()])
@@ -146,7 +149,7 @@ def Consultar_API(accion, estacion):
     #00206878 Inicio 2018-08-24 07:00:00 C.I. Tibaitatá 1535112000
     #31017600 al año
     #Consultar sensor
-    Sensor=operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Consulta2")
+    Sensor=operardb_geof(0, "dbo.SITB_SenEst"+str(estacion), 0 ,"Consulta2")
     llaves=list(Sensor['Sen'+str(estacion)+'_Columnas'].values)
     llaves.insert(0,'Est_Id')
     llaves.insert(1,'Est'+str(estacion)+'_Fecha')
@@ -155,7 +158,7 @@ def Consultar_API(accion, estacion):
     tam_lista=0
     
     try:
-        tabla=operardb_geof(0, "SITB_Estacion_"+str(estacion), 0 ,"Consulta2")
+        tabla=operardb_geof(0, "dbo.SITB_Estacion_"+str(estacion), 0 ,"Consulta2")
         Ser_e="002056BF"
         if(estacion==1):
             Ser_e="002056BF"
@@ -229,7 +232,7 @@ def Consultar_API(accion, estacion):
                 else:
                     aux[ind+1]=0
             dfg.loc[len(dfg)]=aux
-        operardb_geof(dfg, "SITB_Estacion_"+str(estacion), 0 ,"Actualizar")  
+        operardb_geof(dfg, "dbo.SITB_Estacion_"+str(estacion), 0 ,"Actualizar")  
                           
 def Actualizar_pag():
     #0 Crear Estacion
@@ -257,7 +260,7 @@ def graficar_linea():
     DF_L=[]    
     Dicci=result2.to_dict()
     for i in range(1,4):
-        DF_L.append(operardb_geof(0, "SITB_SenEst"+str(i), 0 ,"Consulta2"))
+        DF_L.append(operardb_geof(0, "dbo.SITB_SenEst"+str(i), 0 ,"Consulta2"))
 
     Eti1=list(DF_L[0]['Sen1_Columnas'].values)
     Eti2=list(DF_L[1]['Sen2_Columnas'].values)
@@ -271,7 +274,7 @@ def graficar_linea():
         Fecha_2=Dicci['Fecha_2']+" "+Dicci['Horas_2']+":00"
         
         #Construcción del arreglo y filtrado
-        AR=operardb_geof(0, "SITB_Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
+        AR=operardb_geof(0, "dbo.SITB_Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
         Texto="Est"+str(Dicci['Estacion'])+"_Fecha"
         AR[Texto] = AR[Texto].astype('datetime64[ns]')
         Filtro=Texto+" >= "+"'"+Fecha_1+"'"+" and "+Texto+" <= "+"'"+Fecha_2+"'"
@@ -352,15 +355,15 @@ def Consultar_sensor(estacion):
     df=pd.DataFrame(Etiquetas, columns=["Sen"+str(estacion)+"_Nombre", "Sen"+str(estacion)+"_Columnas", "Uni_Simbolo", "Sen"+str(estacion)+"_Decimales", "Sen"+str(estacion)+"_Direccion"])
     #Consultar información previa
     try:
-        df1=operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Consulta2")
+        df1=operardb_geof(0, "dbo.SITB_SenEst"+str(estacion), 0 ,"Consulta2")
         if(len(df1)<=len(df)):
             df1=df
         #Borrar
-        operardb_geof(0, "SITB_SenEst"+str(estacion), 0 ,"Borrar")
+        operardb_geof(0, "dbo.SITB_SenEst"+str(estacion), 0 ,"Borrar")
     except:
         print("Crear tabla")
     #Crear
-    Texto=("CREATE TABLE SITB_SenEst"+str(estacion)+
+    Texto=("CREATE TABLE dbo.SITB_SenEst"+str(estacion)+
            " (Sen"+str(estacion)+"_Nombre VARCHAR(50),"+ 
            " Sen"+str(estacion)+"_Columnas VARCHAR(50),"+
            " Uni_Simbolo VARCHAR(50),"+ 
@@ -368,7 +371,7 @@ def Consultar_sensor(estacion):
            " Sen"+str(estacion)+"_Direccion VARCHAR(50));")     
     operardb_geof(0, Texto, 0 ,"Crear")
     #Actualizar sensores 
-    operardb_geof(df, "SITB_SenEst"+str(estacion), 0 ,"Actualizar")
+    operardb_geof(df, "dbo.SITB_SenEst"+str(estacion), 0 ,"Actualizar")
 
 def Cargar_archivos_shp(Archivo, k, estado, usuario, Fecha):
     df = pd.DataFrame(Archivo)
@@ -386,11 +389,11 @@ def Cargar_archivos_shp(Archivo, k, estado, usuario, Fecha):
         df.columns=['Est_Id', 'Mun_Id', 'Est_MunId', 'Est_Latitud', 'Est_Longitud', 'Est_Elevacion', 'Est_FechaIns', 'Est_Propietario', 'Est_Geometria', 'Est_Estado', 'Est_UsuarioReg', 'Est_FechaReg', 'Est_UsuarioMod', 'Est_FechaMod']
     df=df.astype(str)
     if(k==0):
-        operardb_geof(df, "SITB_AreaEstudio",'0',"Actualizar")
+        operardb_geof(df, "dbo.SITB_AreaEstudio",'0',"Actualizar")
     elif(k==1):
-        operardb_geof(df, "SITB_AreaInfluencia",'0', "Actualizar")    
+        operardb_geof(df, "dbo.SITB_AreaInfluencia",'0', "Actualizar")    
     elif(k==2):
-        operardb_geof(df, "SITB_Estacion",'0',"Actualizar")     
+        operardb_geof(df, "dbo.SITB_Estacion",'0',"Actualizar")     
 
 #Codificar los archivos en formato de texto plano
 def Crear_archivo_base_64(ruta):
@@ -433,7 +436,7 @@ def informe1():
         Fecha_1=Dicci['Fecha_1']+" "+Dicci['Horas_1']+":00"
         Fecha_2=Dicci['Fecha_2']+" "+Dicci['Horas_2']+":00"
         #Construcción del arreglo y filtrado
-        AR=operardb_geof(0, "SITB_Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
+        AR=operardb_geof(0, "dbo.SITB_Estacion_"+str(Dicci['Estacion']), 0 ,"Consulta2")
         Texto="Est"+str(Dicci['Estacion'])+"_Fecha"
         AR[Texto] = AR[Texto].astype('datetime64[ns]')
         Filtro=Texto+" >= "+"'"+Fecha_1+"'"+" and "+Texto+" <= "+"'"+Fecha_2+"'"
@@ -507,7 +510,7 @@ def graf():
 def graf_a():
     col_list=[]
     for i in range(1,4):       
-        AR=operardb_geof(0, "SITB_SenEst"+str(i), 0 ,"Consulta2")
+        AR=operardb_geof(0, "dbo.SITB_SenEst"+str(i), 0 ,"Consulta2")
         col_list.append(AR)
     Eti1=col_list[0]['Sen1_Columnas'].values
     Eti2=col_list[1]['Sen2_Columnas'].values
@@ -523,7 +526,7 @@ def graf_a():
 
 @app.route('/mapa4')
 def maps4():
-    df=operardb_geof([], 'SITB_ImgRaster', 0 ,"Consulta2")
+    df=operardb_geof([], 'dbo.SITB_ImgRaster', 0 ,"Consulta2")
     print(df)
     Nomb_Ima=df['Ima_Nom'].values
     Ima=df['Ima_Imagen'].values
@@ -554,17 +557,17 @@ def maps1():
 @app.route('/mapa')
 def maps():
     #Traer Archivo 1 de la base de datos y convertirlo en objeto para verlo
-    df1=operardb_geof([], "SITB_AreaEstudio", "Ae_Geometria", "Consulta")
+    df1=operardb_geof([], "dbo.SITB_AreaEstudio", "Ae_Geometria", "Consulta")
     dfa1=df1.drop(['Ae_Id', 'Ae_Estado', 'Ae_UsuarioReg', 'Ae_FechaReg', 'Ae_UsuarioMod', 'Ae_FechaMod'], axis=1)
     dfa1['Ae_Geometria'] = dfa1['Ae_Geometria'].apply(wkt.loads)
     Archivo1 = gpd.GeoDataFrame(dfa1, geometry='Ae_Geometria')
     #Traer Archivo 2 de la base de datos y convertirlo en objeto para verlo
-    df1=operardb_geof([], "SITB_AreaInfluencia", "ArIn_Geometria", "Consulta")
+    df1=operardb_geof([], "dbo.SITB_AreaInfluencia", "ArIn_Geometria", "Consulta")
     dfa1=df1.drop(['ArIn_Estado', 'ArIn_UsuarioReg', 'ArIn_FechaReg', 'ArIn_UsuarioMod', 'ArIn_FechaMod'], axis=1)
     dfa1['ArIn_Geometria'] = dfa1['ArIn_Geometria'].apply(wkt.loads)
     Archivo2 = gpd.GeoDataFrame(dfa1, geometry='ArIn_Geometria')
     #Traer Archivo 3 de la base de datos y convertirlo en objeto para verlo
-    df1=operardb_geof([], "SITB_Estacion", "Est_Geometria", "Consulta")
+    df1=operardb_geof([], "dbo.SITB_Estacion", "Est_Geometria", "Consulta")
     dfa1=df1.drop(['Est_Estado', 'Est_UsuarioReg', 'Est_FechaReg', 'Est_UsuarioMod', 'Est_FechaMod'], axis=1)
     dfa1['Est_Geometria'] = dfa1['Est_Geometria'].apply(wkt.loads)
     Archivo3 = gpd.GeoDataFrame(dfa1, geometry='Est_Geometria')
@@ -662,7 +665,7 @@ def admin_bd4():
     if('opcion_lista' in globals()):
         Eti_tb=opcion_lista.get('Tabla')
     else:
-        Eti_tb="SITB_Estacion_1"
+        Eti_tb="dbo.SITB_Estacion_1"
         
     if(OPT=="Consulta" or OPT=="Borrar1"):
         ET=[]
@@ -671,13 +674,13 @@ def admin_bd4():
             A=Lista_sql.tail(t)
         else:
             A=Lista_sql
-            if(Eti_tb=="SITB_ImgRaster"):
+            if(Eti_tb=="dbo.SITB_ImgRaster"):
                 A=A.drop(['Ima_Imagen'], axis=1)
-            elif(Eti_tb=="SITB_AreaEstudio"):
+            elif(Eti_tb=="dbo.SITB_AreaEstudio"):
                 A=A.drop(['Ae_Geometria'], axis=1)
-            elif(Eti_tb=="SITB_AreaInfluencia"):
+            elif(Eti_tb=="dbo.SITB_AreaInfluencia"):
                 A=A.drop(['ArIn_Geometria'], axis=1)
-            elif(Eti_tb=="SITB_Estacion"):
+            elif(Eti_tb=="dbo.SITB_Estacion"):
                 A=A.drop(['Est_Geometria'], axis=1)
         for i,row in A.iterrows():
             ET.append(row)
@@ -699,15 +702,15 @@ def admin_bd4():
             return Sensores(2,"00206878.")
         elif(Eti_tb=="Sen_Est_3"):
             return Sensores(3,"0020687D.")
-        elif(Eti_tb=="SITB_ImgRaster"):
+        elif(Eti_tb=="dbo.SITB_ImgRaster"):
             return render_template('Admin_E.html', texto="Diligencie este formulario.")
-        elif(Eti_tb=="SITB_AreaEstudio"):
+        elif(Eti_tb=="dbo.SITB_AreaEstudio"):
             return render_template('Admin_F.html', texto="Diligencie este formulario.")
-        elif(Eti_tb=="SITB_AreaInfluencia"):
+        elif(Eti_tb=="dbo.SITB_AreaInfluencia"):
             return render_template('Admin_G.html', texto="Diligencie este formulario.")
-        elif(Eti_tb=="SITB_Estacion"):
+        elif(Eti_tb=="dbo.SITB_Estacion"):
             return render_template('Admin_H.html', texto="Diligencie este formulario.")
-        elif(Eti_tb=="SITB_EstacionVarEdafo"):
+        elif(Eti_tb=="dbo.SITB_EstacionVarEdafo"):
             return render_template('Admin_K.html', texto="Diligencie este formulario.")
         else:
             return render_template('RTA_2.html', rta="No es posible modificar los registros de esta tabla.")    
@@ -748,7 +751,7 @@ def admin_bd6():
                 df = pd.DataFrame(aux)
                 df=df.transpose()
                 df.columns= ['Var_Id', 'Ima_Nom','Ima_Desc', 'Ima_Imagen', 'Ima_FechaReg', 'Ima_UsuarioReg', 'Ima_FechaMod', 'Ima_UsuarioMod']
-                operardb_geof(df, 'SITB_ImgRaster', 0 ,"Actualizar")                
+                operardb_geof(df, 'dbo.SITB_ImgRaster', 0 ,"Actualizar")                
                 os.remove(nombre_archivo)
             except:
                 return render_template('RTA_2.html', rta="No se ha cargado el registro con exito")
@@ -827,7 +830,7 @@ def admin_bd10():
     if('Formu2' in globals()):
         Eti_tb=Formu2.get('Tabla')
     else:
-        Eti_tb="SITB_Estacion_1"
+        Eti_tb="dbo.SITB_Estacion_1"
         
     ET=[]
     if(len(Lista_sql)>100):
@@ -835,13 +838,13 @@ def admin_bd10():
         A=Lista_sql.tail(t)
     else:
         A=Lista_sql
-        if(Eti_tb=="SITB_ImgRaster"):
+        if(Eti_tb=="dbo.SITB_ImgRaster"):
             A=A.drop(['Ima_Imagen'], axis=1)
-        elif(Eti_tb=="SITB_AreaEstudio"):
+        elif(Eti_tb=="dbo.SITB_AreaEstudio"):
             A=A.drop(['Ae_Geometria'], axis=1)
-        elif(Eti_tb=="SITB_AreaInfluencia"):
+        elif(Eti_tb=="dbo.SITB_AreaInfluencia"):
             A=A.drop(['ArIn_Geometria'], axis=1)
-        elif(Eti_tb=="SITB_Estacion"):
+        elif(Eti_tb=="dbo.SITB_Estacion"):
             A=A.drop(['Est_Geometria'], axis=1)
     for i,row in A.iterrows():
         ET.append(row)
@@ -861,7 +864,7 @@ def admin_bd11():
                 nombre_archivo=os.path.join(uploads_dir, secure_filename(archivo.filename))
                 archivo.save(nombre_archivo)
                 df=Leer_excel_df(nombre_archivo, [Formu['Fecha_reg']+" "+Formu['Horas_reg']], [Formu['Nomusu']])  
-                operardb_geof(df, 'SITB_EstacionVarEdafo', 0 ,"Actualizar")                
+                operardb_geof(df, 'dbo.SITB_EstacionVarEdafo', 0 ,"Actualizar")                
                 os.remove(nombre_archivo)
             except:
                 return render_template('RTA_2.html', rta="No se ha cargado el registro con exito")
@@ -966,8 +969,8 @@ def Leer_excel_df(ruta, fecha, usuario):
         
 #Función principal    
 if __name__ == '__main__':
-    hilo1 = threading.Thread(target=Actualizar_pag)
+    #hilo1 = threading.Thread(target=Actualizar_pag)
     hilo2 = threading.Thread(target=correr_pag)
-    hilo1.start()
+    #hilo1.start()
     hilo2.start()  
     
