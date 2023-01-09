@@ -1,0 +1,759 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SistemaExperto.Models.AccionesOpciones" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAACAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\AccionesOpciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Actividad" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAgAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Actividad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.AreaTematica" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\AreaTematica.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Capas" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAAIAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\Capas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CapasDepartamentos" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAIEAAAAAAAAAQAAAAAIAAAQAAABAAA=</HashCode>
+      <FileName>Models\CapasDepartamentos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CapasMunicipios" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAACAAAAAAAABAAAAAAAAAAAQAAAAQIAAAAAAABAAA=</HashCode>
+      <FileName>Models\CapasMunicipios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CategoriaProbabilidad" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\CategoriaProbabilidad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Coeficientes" Collapsed="true">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Coeficientes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Condicion" Collapsed="true">
+    <Position X="7" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAABAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\Condicion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Conglomerado" Collapsed="true">
+    <Position X="9.25" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIACAAAAAIEAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Conglomerado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Constantes" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQABEAAAAACACBAAA=</HashCode>
+      <FileName>Models\Constantes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Convenciones" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQBAABgAAAAAAAAIAAgAAAAAA=</HashCode>
+      <FileName>Models\Convenciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Cultivo" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACGQIAAAIsAAAAB0AANwAAAABgBAAAAgCAQAAA=</HashCode>
+      <FileName>Models\Cultivo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CultivoCiclo" Collapsed="true">
+    <Position X="7" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAACAAAAAAIAAhIAAAAAAAAwAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\CultivoCiclo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CultivoDepartamento" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIEAAAAAAAEAAAAQAAAAAAABAAIAAA=</HashCode>
+      <FileName>Models\CultivoDepartamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CultivoEtapa" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgIAAAABIAAAAAAAAAACQAAA=</HashCode>
+      <FileName>Models\CultivoEtapa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CultivoMunicipio" Collapsed="true">
+    <Position X="2.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAIABAAACAAAAAwAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CultivoMunicipio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CultivoProductividad" Collapsed="true">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAEgQABAADAAAAAAAAAgAAAAABAAAAAA=</HashCode>
+      <FileName>Models\CultivoProductividad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.CultivoTipoEtapa" Collapsed="true">
+    <Position X="7" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAIAAAAAAAAgJABAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\CultivoTipoEtapa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Departamento" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACABAAAARAAAAAIAAAAAgAAAAAIAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Departamento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Efectos" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Efectos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EfectosAcciones" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAIAAAAAAAAAAAAgAAAAAAAAABAAAAAAAQ=</HashCode>
+      <FileName>Models\EfectosAcciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EfectosOpciones" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAQAAQAAAgAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\EfectosOpciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Estacion" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICAAEBkQEAAAAEAgAAAAAAQAAAAAAAAQAAAEgA=</HashCode>
+      <FileName>Models\Estacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstacionConstantes" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAgAAAAAAAAQAAAAAAAAAAAAAAACAAgA=</HashCode>
+      <FileName>Models\EstacionConstantes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstacionMensual" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAggAAIIAACAFCGAAAAgAAAAAtIAwAADAICAAAAAEgA=</HashCode>
+      <FileName>Models\EstacionMensual.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstacionProductividad" Collapsed="true">
+    <Position X="2.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAIAAAAAAGAAAAAAAAAAAIAgAAAAAAAAAIAAgA=</HashCode>
+      <FileName>Models\EstacionProductividad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstacionProductividadUsuario" Collapsed="true">
+    <Position X="5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAACAAAAAAAAAAIIAgAACAAAAAAAAAEA=</HashCode>
+      <FileName>Models\EstacionProductividadUsuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstacionTipo" Collapsed="true">
+    <Position X="7" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAIAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\EstacionTipo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstacionTipoConstante" Collapsed="true">
+    <Position X="9.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAABAAAgAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EstacionTipoConstante.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstacionValores" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAMoIAAAAAAQCAQQCAAQAAAAAWAAAAAA=</HashCode>
+      <FileName>Models\EstacionValores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EstadoFenologico" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EstadoFenologico.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.EtapaGrupo" Collapsed="true">
+    <Position X="5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAIAAABAAIAACAQAAA=</HashCode>
+      <FileName>Models\EtapaGrupo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.FichaOpcion" Collapsed="true">
+    <Position X="7" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAADAAAQABA=</HashCode>
+      <FileName>Models\FichaOpcion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.GrupoCultivo" Collapsed="true">
+    <Position X="9.25" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAhAAAAABAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\GrupoCultivo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.InformacionAmpliaSeccion1" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAwAAAQAAA=</HashCode>
+      <FileName>Models\InformacionAmpliaSeccion1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.InformacionAmpliaSeccion2" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAABAQQAAAAAAAAQAACCAAA=</HashCode>
+      <FileName>Models\InformacionAmpliaSeccion2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.ListaOpciones" Collapsed="true">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAACAAQAAAAAAACBAEAAEAAAAwgAUAAAAAAAIA=</HashCode>
+      <FileName>Models\ListaOpciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Municipio" Collapsed="true">
+    <Position X="7" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAQAAAQAIEAAABgAABQAIAABQAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Municipio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.MunicipioEscenario" Collapsed="true">
+    <Position X="9.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAQCAAAABAAAAAAABAAAAAAQAEAAAAAAEAAA=</HashCode>
+      <FileName>Models\MunicipioEscenario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.MunicipioEstacion" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAIAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\MunicipioEstacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Ofertas" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAQAQAAAAAAAABAEAgAAIAAgAAQAAAAgAAAA=</HashCode>
+      <FileName>Models\Ofertas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Opciones">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAQAAgAAAAAACAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Models\Opciones.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.OpcionesVisualizacion" Collapsed="true">
+    <Position X="7" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAABQAAAAQAAAAAAAAQAAAAAAAAAABQAA=</HashCode>
+      <FileName>Models\OpcionesVisualizacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.OpcionTecnologica" Collapsed="true">
+    <Position X="9.25" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAIQ=</HashCode>
+      <FileName>Models\OpcionTecnologica.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Pais" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Pais.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Parametros" Collapsed="true">
+    <Position X="2.75" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAgAAFAAAAAIgAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Parametros.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.ParametrosCargueMasivo" Collapsed="true">
+    <Position X="5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAiBAAAABAAAAgAAAAAAAAAAABAA=</HashCode>
+      <FileName>Models\ParametrosCargueMasivo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Prediccion" Collapsed="true">
+    <Position X="7" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAQAAAAAAAAgEAAAEAAAAAAAEAAAAEAEAAIASAQQE=</HashCode>
+      <FileName>Models\Prediccion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.SEEntities" Collapsed="true">
+    <Position X="9.25" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ECIBARAYBJSAYkwEAAGLRMEEUARQAhLlARAmwAgAAEQ=</HashCode>
+      <FileName>Models\SEEntities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.SueloProductividad" Collapsed="true">
+    <Position X="0.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAJAAAAAAQAAAAKAAAAAJAAAAAgAABIQAAAAA=</HashCode>
+      <FileName>Models\SueloProductividad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Termino" Collapsed="true">
+    <Position X="2.75" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIgAAAQQAAAAAADAAAAAAAAAIAAAAEAAAAgAAQAAQ=</HashCode>
+      <FileName>Models\Termino.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.TipoOferta" Collapsed="true">
+    <Position X="5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\TipoOferta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.TipoPrediccion" Collapsed="true">
+    <Position X="7" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAhAAAAAAASAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TipoPrediccion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.TipoSuelo" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAABiAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TipoSuelo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Usuario" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gIAgAAAgAAQAAIIEAAAAgAAAAIAAAAAgAAAAAAABEEA=</HashCode>
+      <FileName>Models\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.VariablesHistoricas" Collapsed="true">
+    <Position X="5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAQCAAAAAAAAAAAAAAAAABAAAAQAAAAAQAE=</HashCode>
+      <FileName>Models\VariablesHistoricas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.Zona" Collapsed="true">
+    <Position X="7" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACIAAAAgAEAAAAAQAAkArAAAAABAAAwAAAAAAAAAEAA=</HashCode>
+      <FileName>Models\Zona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.ZonaEstacion" Collapsed="true">
+    <Position X="9.25" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAoAAAAAAAAAAEjAAAgAEBABAAIACAAMAAAAqE=</HashCode>
+      <FileName>Models\ZonaEstacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.ZonaEstacionMensual" Collapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAQAAIAAAAAiABAAEBAAAAAIEAAIAAAAAAYIQAAQE=</HashCode>
+      <FileName>Models\ZonaEstacionMensual.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Models.ZonaMensual" Collapsed="true">
+    <Position X="2.75" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAEAAAABAAAgABAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\ZonaMensual.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.AlertaController">
+    <Position X="0.5" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAQAAwAAEAAAAAAAEAAACAAAAAQAAABIgIAAA=</HashCode>
+      <FileName>Controllers\AlertaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ArchivoController">
+    <Position X="2.75" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAgAABAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ArchivoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.AreaTematicaController">
+    <Position X="2.75" Y="19" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\AreaTematicaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CapasController">
+    <Position X="7.75" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\CapasController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CapasDepartamentosController">
+    <Position X="10.25" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\CapasDepartamentosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CapasMunicipiosController">
+    <Position X="5.25" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\CapasMunicipiosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CargueMasivoController">
+    <Position X="0.5" Y="19" Width="1.75" />
+    <NestedTypes>
+      <Class Name="SistemaExperto.Controllers.CargueMasivoController.ResultadoCargueBD" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\CargueMasivoController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.CargueMasivoController.ListaEncabezadoExcel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\CargueMasivoController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.CargueMasivoController.ListaExcel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\CargueMasivoController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAABAQAADCAAAAAAAAAAAAQAAAAAEAAAAAAAg=</HashCode>
+      <FileName>Controllers\CargueMasivoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ConglomeradoController">
+    <Position X="5.25" Y="19" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\ConglomeradoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ConvencionesController">
+    <Position X="7.75" Y="19" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\ConvencionesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CultivoCicloController">
+    <Position X="10.25" Y="18.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\CultivoCicloController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CultivoController">
+    <Position X="0.5" Y="23" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\CultivoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CultivoEtapaController">
+    <Position X="2.75" Y="23.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\CultivoEtapaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.CultivoTipoEtapaController">
+    <Position X="5.25" Y="23.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\CultivoTipoEtapaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.EfectosController">
+    <Position X="7.75" Y="23.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQQAAAAAAAAAAEACAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\EfectosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.EstacionConstantesController">
+    <Position X="5.25" Y="26.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\EstacionConstantesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.EstacionController">
+    <Position X="2.75" Y="26.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAACAAACAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\EstacionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.EstacionMensualController">
+    <Position X="10.25" Y="22.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQkAAEBCQQAggAIAMAAEUACCAAAAAABhFAgAAQAQE=</HashCode>
+      <FileName>Controllers\EstacionMensualController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.EstacionValoresController">
+    <Position X="7.75" Y="26.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\EstacionValoresController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.FichaOpcionController">
+    <Position X="0.5" Y="26.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\FichaOpcionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.InformacionAmpliaSeccion1Controller">
+    <Position X="2.75" Y="33" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\InformacionAmpliaSeccion1Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.InicioController">
+    <Position X="5.25" Y="33" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAwEAAAAAAAAAAAAAAAAAAAEAAEAAACA=</HashCode>
+      <FileName>Controllers\InicioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.jQueryDataTableParamModel">
+    <Position X="7.5" Y="33" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgIAAAAAAAAAAAAAAAAAABAkAAAAAAAAAAAAAAAIgA=</HashCode>
+      <FileName>Controllers\jQueryDataTableParamModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ListaOpcionesController">
+    <Position X="10" Y="33" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\ListaOpcionesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.MunicipioController">
+    <Position X="7.5" Y="36.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\MunicipioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.MunicipioEscenarioController">
+    <Position X="2.75" Y="40.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\MunicipioEscenarioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.MunicipioEstacionController">
+    <Position X="2.75" Y="36.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\MunicipioEstacionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.OpcionesVisualizacionController">
+    <Position X="5.25" Y="36.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\OpcionesVisualizacionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.OpcionTecnologicaController">
+    <Position X="5.25" Y="40.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\OpcionTecnologicaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.PrediccionController">
+    <Position X="10" Y="36.5" Width="1.75" />
+    <NestedTypes>
+      <Class Name="SistemaExperto.Controllers.PrediccionController.VariablesPDSI" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\PrediccionController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gAAQAAAACCQQCACAAAAAAAEAAAABEAAAAgEABAAQQAA=</HashCode>
+      <FileName>Controllers\PrediccionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ProductividadController">
+    <Position X="0.5" Y="36.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.ResultadoCargueBD" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.Opcion" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.ProductividadInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.ListaEtoPptDiaria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.ListaEtapas_JKc" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.ListaResultadosProductividad" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.ListaEncabezadoExcel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="SistemaExperto.Controllers.ProductividadController.ListaExcel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ProductividadController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAEEAACBAARYAACCAgAAAggYAAAAYAAAAEEEhIAAACA=</HashCode>
+      <FileName>Controllers\ProductividadController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.TerminoController">
+    <Position X="7.75" Y="40.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAACQQAAAAAAAEAAEAAAAAAAAAAgEAAAAQgAQ=</HashCode>
+      <FileName>Controllers\TerminoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.UsuarioController">
+    <Position X="10" Y="43" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEQAAAgAASQASAAACAACAEAAAAAgAAAAgEgAAAQACQ=</HashCode>
+      <FileName>Controllers\UsuarioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ZonaController">
+    <Position X="5.25" Y="44.5" Width="1.75" />
+    <NestedTypes>
+      <Class Name="SistemaExperto.Controllers.ZonaController.PuntosPoligono" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ZonaController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\ZonaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ZonaEstacionController">
+    <Position X="7.75" Y="45" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\ZonaEstacionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SistemaExperto.Controllers.ZonaMensualController">
+    <Position X="2.75" Y="44.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACQQAAAAAAAAAAEAAAAAAAAAQgEAAAAQAAA=</HashCode>
+      <FileName>Controllers\ZonaMensualController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SE.Views.GrupoCultivoController">
+    <Position X="0.5" Y="33" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQQAAAAAAAAAAEAAAAAAAAAAgEAAAAQAAA=</HashCode>
+      <FileName>Views\GrupoCultivoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

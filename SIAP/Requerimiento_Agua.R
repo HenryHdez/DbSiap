@@ -1,0 +1,250 @@
+library(ggplot2)
+library(scales)
+library(gganimate)
+
+#DIRECTORIO DE TRABAJO
+#setwd("C:/Users/jmestupinan/OneDrive - AGROSAVIA - CORPORACION COLOMBIANA DE INVESTIGACION AGROPECUARIA/corpoica/PROYECTO PAPA/Actividad 2.4/")
+setwd("D:/Escritorio/SIAP/")
+
+##LECTURA DE DATOS DESDE EXCEL: CAMBIAR SHEET: HOJA###
+#importa la tabla
+Datos<-read.table("data_balance_3.csv",header=T, sep=';', fill=TRUE, check.names=TRUE, stringsAsFactors=FALSE)
+mean(Datos$Eto_Calc_mm_d.1)
+
+Dates <-data.frame(seq(as.Date("2021-02-03"), as.Date("2021-06-26"), by="days"))
+colnames(Dates)<-c("Fecha")
+##DATOS DE ENTRADA
+delta<-1 #delta de dias para simular
+
+#Suelo
+CC<-77.7  #Capacidad de campo a 0.1 cbar(%g) (52 % vol_3, 49.2%_2, 53.53%_1)
+pmp<-54.95 #Punto de marchitez permanente (%g)(35.5% vol_3, 29.5%_2,35.1%_1)
+da<-0.646 #Densidad aparente (-)(0.646_3, 0.65_2,0.646_1) 
+
+#Planta
+Rmin<- 0.05 #Longitud de ra�?z máxima(m) 
+Rmax<- 0.30 #Longitud de ra�f�z m�f¡xima (m)
+Jini<- 1  #Tiempo de crecimiento de la ra�f�z (dia)
+Jmax<- 66 
+
+Kyini<- 0.45 #Factor del cultivo 
+Kydes<- 0.8 #Factor del cultivo 
+Kymed<- 0.7 #Factor del cultivo 
+Kyfin<- 0.2 #Factor del cultivo 
+
+Kcini<-0.86  #Coeficientes del cultivo por etapas
+Kcmed<-1.07
+Kcfin<-0.67
+
+Lini<- 27 #Duraci�f³n etapa (dias) Para ciclo 2:35
+Ldes<- 39 # Para ciclo 2:30
+Lmed<- 47 # Para ciclo 2:53
+Lfin<- 42 # Para ciclo 2:20
+
+pini<-0.35 #Factor de agotamiento (-)
+pdes=0.35
+###Cálculode Agua disponible total#
+
+ADT<-1000*((CC-pmp)/100)*da    #ADT (mm/m)
+
+a<-0.9 #Porcentaje para Precipitacion efectiva
+
+#Agotamiento inicial de agua en el suelo
+
+Dr0=10 # Cero para iniciar a capacidad de campo
+
+
+
+k<-Lini+Ldes+Lmed+Lfin
+
+ciclo<-Lini+Ldes+Lmed+Lfin
+
+nr<-nrow(Datos)
+dia<-12 ##dia que inicia el balance. Se asume que inicia en capacidad de campo
+
+x<-matrix(data = NA, nrow = nr, ncol = 19, byrow = FALSE, dimnames = NULL)
+R<-data.frame(x)
+con<-1
+
+
+for(j in con:nrow(Datos)){
+  
+  R[j,4]<-dia
+  colnames(R)[4]<-c("J")
+  
+  #Calculo de la longitud de ra�?z
+  
+  if(R[j,4]<=Jini){
+    R[j,5]<-Rmin
+  }else
+    if(R[j,4]<=Jmax){ 
+      R[j,5]<-round(Rmin+((Rmax-Rmin)*((R[j,4]-Jini)/(Jmax-Jini))),2) 
+    }
+  else {
+    R[j,5]<-Rmax
+  }
+  colnames(R)[5]<-c("Longitud_de_raiz_m")
+  
+  #Cálculo de coeficiente del cultivo Kc
+  if(R[j,4]<=Lini){
+    R[j,6]<-Kcini
+  } else if(R[j,4]<=(Lini+Ldes)){
+    R[j,6]<-round(Kcini+((R[j,4]-Lini)/Ldes)*(Kcmed-Kcini),2)
+  } else if(R[j,4]<=(Lini+Ldes+Lmed)){
+    R[j,6]<-Kcmed
+  } else 
+    R[j,6]<-round(Kcmed+((R[j,4]-(Lini+Ldes+Lmed))/Lfin)*(Kcfin-Kcmed),2)
+  
+  colnames(R)[6]<-c("Kc")
+  
+  
+  #Cálculo de agua disponible total ADT
+  R[j,7]<-round(ADT* R[j,5],2)
+  colnames(R)[7]<-c("ADT_mm")
+  
+  
+  
+  #Cálculo factor de agotamiento  (cuadro 22 FAO 56)
+  if(R[j,4]<=Lini+Ldes){
+    
+    if(Datos[j,5]==5){                                               
+      R[j,8]<-pini
+    }else {
+      R[j,8]<-max(pini+(0.04*(5-Datos[j,5])),0.1)
+    }
+  }
+  else  {
+    if(Datos[j,5]==5){                                               
+      R[j,8]<-pdes
+    }else{
+      R[j,8]<-max(pdes+(0.04*(5-Datos[j,5])),0.1)
+    }
+  }
+  
+  colnames(R)[8]<-c("p_aj_mm")
+  
+  
+  #Cálculo de agua fácilmente aprovechable AFA
+  
+  R[j,9]<-round(R[j,7]*R[j,8],2)
+  colnames(R)[9]<-c("AFA_mm")
+  
+  
+  #Cálculo de lámina neta
+  
+  if(j==1){
+    
+    if((round(R[j,9]<=Dr0,1))<0){                                               
+      R[j,10]<-Dr0
+    }else{
+      R[j,10]<-0
+    }
+  }
+  
+  else{
+    if(R[j,9]<=R[j-1,16]){  
+      R[j,10]<-R[j-1,16]
+    }
+    else{
+      R[j,10]<-0 
+    }
+  }
+  
+  
+  colnames(R)[10]<-c("Lamina_bruta_mm")
+  
+  
+  
+  
+  #Cálculo de la precipitación efectiva
+  
+  R[j,11]<-round(Datos[j,3]*a,2)
+  
+  colnames(R)[11]<-c("P_efec_mm")
+  
+  
+  #Cálculo del coeficiente de estrés hidrico Ks
+  
+  R[j,13]<-1
+  colnames(R)[13]<-c("Ks")
+  
+  #Cálculo de la evapotranspiración del cultivo ajustado ETcaj
+  R[j,14]<-round(Datos[j,5]*1,2)
+  
+  
+  colnames(R)[14]<-c("ETcaj_mm")
+  
+  #Cálculo de la percolación profunda
+  
+  if(j==1){
+    
+    if((round(R[j,11]+R[j,10]-R[j,14]-Dr0,1))<0){                                               
+      R[j,15]<-0
+    }else{
+      R[j,15]<-round(R[j,11]+R[j,10]-R[j,14]-Dr0,2)
+    }
+  }
+  
+  else{
+    if((round(R[j,11]+R[j,10]-R[j,14]-R[j-1,16],1))<0){
+      R[j,15]<-0
+    }
+    else{
+      R[j,15]<-round(R[j,11]+R[j,10]-R[j,14]-R[j-1,16],2) 
+    }
+  }
+  
+  colnames(R)[15]<-c("Perc_Prof_mm")
+  
+  
+  
+  #Cálculo del agotamiento de agua final en el suelo Dr final
+  
+  if(j==1){
+    R[j,16]<-round(Dr0-R[j,11]+R[j,14]+R[j,15]-R[j,10],2)          #Ya tiene el riego en Dr ini
+  }else{
+    R[j,16]<-round(R[j-1,16]-R[j,11]+R[j,14]+R[j,15]-R[j,10],2)
+  }
+  colnames(R)[16]<-c("Dr_final_mm")
+  
+  
+  dia<-dia+1
+  
+  R[j,1]<-as.character(Dates[j,1],format="%Y/%m/%d")
+  colnames(R)[1]<-c("Fecha") 
+  R[j,2]<-Datos[j,3]
+  colnames(R)[2]<-c("P(mm)")
+  R[j,3]<-Datos[j,6]
+  colnames(R)[3]<-c("ETo(mm)")
+  
+}
+
+write.table(R,"./codigo/balance1.csv", col.names = TRUE, row.names = FALSE, sep=";", dec=".")
+
+
+
+p=ggplot(R, aes(J))+geom_col(aes(y=P_efec_mm,fill=factor(1)))+
+  geom_col(aes(y=Lamina_bruta_mm,fill=factor(3)),alpha=0.7,show.legend=T)+
+  geom_col(aes(y=Perc_Prof_mm*-1,fill=factor(4)),alpha=0.7,show.legend=T)+
+  geom_ribbon(aes(ymax=0, ymin=(Dr_final_mm*-1),fill="green4"),alpha=0.4)+
+  geom_ribbon(aes(ymax=ETcaj_mm, ymin=0,fill="tan1"), alpha=0.4,show.legend=F)+
+  geom_line(aes(y=AFA_mm*-1, colour="AFA"),size=0.8)+
+  geom_line(aes(y=(ADT_mm)*-1,colour="CAAS"),size=0.8)+
+  scale_fill_manual(values=c("steelblue2","royalblue4","dimgray","green4","tan1"),labels=c("Prec.","Ln","Per.Prof","Dr","ETc"),
+                    name="")+
+  scale_colour_manual(values=c("gray38","red3","green4","purple4"),name="")+
+  scale_linetype_manual(values =c(1,1,1,11))+
+  theme_bw()+
+  guides(color=guide_legend(override.aes=list(fill=NA)))+
+  theme(legend.position="top",legend.key.size =unit(1,"line"))+
+  scale_x_continuous(breaks = (seq(0, 155, 5)))+
+  scale_y_continuous(breaks = (seq(-50, 35, 10)))+
+  geom_hline(aes(yintercept=0))+
+  labs( 
+    y = "L�mina (mm)", 
+    x = "D�as despues de siembra")
+p
+
+
+
+

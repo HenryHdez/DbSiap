@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Modulo D-MAPA-</title>
+
+    <!-- Fuentes-->
+    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Estilos-->
+    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/510/fabric.min.js"></script>
+
+    <!--Graficos-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="./static/scripts/BalanceHidrico.js"></script>
+</head>
+
+<body id="page-top" onload="graficar()">
+    <!-- Empaque de la página -->
+    <div id="wrapper">
+
+        <!-- Barra lateral -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Barra lateral -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon rotate-n-15"></div>
+                <div class="sidebar-brand-text mx-3">Información Agroclimática</div>
+            </a>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Cabecera -->
+            <div class="sidebar-heading">
+                Contenido
+            </div>
+
+            <!-- Nav Item - Graficos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Gráficas</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="#">Balance hídrico</a>
+                        <!--<a class="collapse-item" href="templates/cards.html">Variable 2</a>-->
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Mapas -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMapas" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-map"></i>
+                    <span>Mapas</span>
+                </a>
+                <div id="collapseMapas" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="./brillo.html">Brillo solar</a>
+                        <a class="collapse-item" href="./Evotrans.html">Evotranspiración</a>
+                        <a class="collapse-item" href="./Humedadrel.html">Humedad relativa</a>
+                        <a class="collapse-item" href="./Precipita.html">Precipitación</a>
+                        <a class="collapse-item" href="./Tempmax.html">Temperatura máxima</a>
+                        <a class="collapse-item" href="./Tempmed.html">Temperatura media</a>
+                        <a class="collapse-item" href="./Tempmin.html">Temperatura mínima</a>
+                        <a class="collapse-item" href="./Nino_nina.html">F. Niño y niña</a>
+                        <div class="collapse-divider" style="text-align: justify;">Aquí encontrará seis (6) variables y su representación cartográfica en el departamento de cundinamarca.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Tablas 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTables" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>nuevas opciones</span>
+                </a>
+                <div id="collapseTables" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="./Tabla_Balancehidri.html">Balance hídrico</a>
+                        <a class="collapse-item" href="utilities-border.html">Enlace nueva opción 1</a>
+                    </div>
+                </div>
+            </li>-->
+
+        </ul>
+        <!-- Fin de la barra lateral -->
+
+        <!-- Contenido -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Contenido principal -->
+            <div id="content">
+                <!-- Contenido de la pagina -->
+                <div class="container-fluid">
+                    <!-- contenido de la fila -->
+                    <div class="row">
+                        <!-- Area Chart -->
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <!--Titulo y menú del gráfico-->
+                                    <h6 class="m-0 font-weight-bold text-primary" style="text-align: center; font-size:180%;">Balance hídrico</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Opciones en forma de pestañas-->
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-P1-tab" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-P1" aria-selected="true" style="text-align: center; font-size:140%;">Presentación</a>
+                            <a class="nav-item nav-link" id="nav-P2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-P2" aria-selected="false" style="text-align: center; font-size:140%;">Formulario</a>
+                            <a class="nav-item nav-link" id="nav-P3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-P3" aria-selected="false" style="text-align: center; font-size:140%;">Resultados</a>
+                            <a class="nav-item nav-link" id="nav-P4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-P4" aria-selected="false" style="text-align: center; font-size:140%;">Tablas</a>
+                        </div>
+                    </nav>
+
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-P1-tab">
+                            <div class="card border-info mb-3">
+                                <div class="card-body text-info">
+                                    <h5 class="card-title">Descripción del modulo</h5>
+                                    <p style="text-align: justify; font-size:110%;">Este módulo cuantifica las necesidades de agua del cultivo de papa basado en un modelo de balance hídrico agrícola, usando como datos de entrada las propiedades hidrofísicas del suelo y las series diarias de evapotranspiración
+                                        de referencia (ETo) y precipitación de la red de estaciones del proyecto SIAP.</p>
+                                    <p style="text-align: justify; font-size:110%;">El resultado del modelo es una recomendación de lámina de riego con el objetivo de evitar el estrés hídrico indeseado y reducción del rendimiento potencial soportado en los fundamentos teóricos del documento FAO N°56
+                                        “Evapotranspiración del cultivo Guías para la determinación de los requerimientos de agua de los cultivos".</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-P2-tab">
+                            <div class="card border-info mb-3">
+                                <div class="card-body text-info">
+                                    <h5 class="card-title">Información de usuario</h5>
+                                    <!-- Campos de entrada -->
+                                    <div class="row">
+
+                                        <div class="col-xl-5 col-md-5 mb-6">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Entrada</div>
+                                                </div>
+
+                                                <table class="form-row">
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Seleccione opción:</b> </p>
+                                                        </td>
+                                                        <td class="col-10">
+                                                            <select id="opcion_dat" onchange="Var_iniciales()" style="text-align: center; width: 80%;">
+                                                      <option value = 0 selected>Defecto</option>
+                                                      <option value = 1>Usuario</option>
+                                                      <option value = 2>Estación 1 (Finca casateja Facatativá)</option>
+                                                      <option value = 3>Estación 2 (C.I. Tibaitatá)</option>
+                                                      <option value = 4>Estación 3 (Finca vda Santa Isabel)</option>
+                                                    </select>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Fecha de la siembra:</b> </p>
+                                                        </td>
+                                                        <td class="col-10">
+                                                            <input type="date" id="Fechao" name="Fechao" value="2022-01-01" style="text-align: center; width: 80%;" />
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Dias transcurridos:</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="dias" name="dias" value="140" step="1" min="2" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Capacidad de campo (gravimétrico):</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="CC" name="CC" value="77.7" step="0.01" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Punto de marchitez permanente (gravimétrico):</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="PMP" name="PMP" value="54.95" step="0.01" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Densidad aparente:</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="DA" name="DA" value="0.646" step="0.001" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Kc (incial):</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="Kco" name="Kco" value="0.86" step="0.01" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Kc (medio):</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="Kcm" name="Kcm" value="1.07" step="0.01" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Kc (final):</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="Kcf" name="Kcf" value="0.67" step="0.01" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+
+                                                    <tr class="col-md-6 col-sm-12 form-group">
+                                                        <td class="col-10">
+                                                            <p> <b>Factor de agotamiento:</b> </p>
+                                                        </td>
+                                                        <td class="col-10"> <input type="number" onchange="graficar()" id="Fa1" name="Fa1" value="0.35" step="0.01" style="text-align: center; width: 80%;" /></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- Resumen -->
+                                        <div class="col-xl-7 col-md-7 mb-6">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Vista previa</div>
+                                                    <div id="Vista_prev"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-P3-tab">
+                            <div class="card border-info mb-3">
+                                <div class="card-body text-info">
+                                    <h5 class="card-title">Resultados obtenidos</h5>
+                                    <!-- Mapa -->
+                                    <div class="row">
+
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">General</div>
+                                                <div id="Suelo_canva" width="40%"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Resumen</div>
+                                                <div id="Suelo_res" width="40%"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card border-left-info shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Nomenclatura</div>
+                                                <ul>
+                                                    <li>
+                                                        <p style="text-align: justify;"><b>Dr (Agotamiento de agua en la zona de raíces):</b> Contenido de humedad del suelo al final del día.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="text-align: justify;"><b>Etc (Evapotranspiración del cultivo):</b> Cantidad de agua consumida por la planta y evaporación del suelo.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="text-align: justify;"><b>Perc (Percolación profunda):</b> Cantidad de agua que excede la capacidad de retención de agua del suelo y se filtra fuera de la zona de raíces.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="text-align: justify;"><b>AFA (Agua fácilmente aprovechable para la planta):</b> Umbral de humedad en la zona de raíces que la planta puede soportar sin presentar efectos por estrés hídrico.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="text-align: justify;"><b>ADT (Capacidad de retención de humedad del suelo en zona de raíces):</b> Es la cantidad de agua de puede retener el suelo en la zona de raíces. Valor entre capacidad de campo y punto de marchitez
+                                                            permanente.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="text-align: justify;"><b>R (Lámina de riego):</b> Cantidad para aplicar en el riego para evitar estrés hídrico de la planta.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="text-align: justify;"><b>P (Precipitación efectiva):</b> Cantidad de agua que aporta la lluvia a la zona de raíces.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-P4-tab">
+                            <div class="card border-info mb-3">
+                                <button onclick="Exportarcsv('Consolidado.csv')" class="btn btn-info">Descargar información del consolidado</button>
+                                <div class="card-body text-info">
+                                    <h5 class="card-title">Consolidado</h5>
+                                    <!-- Tablas -->
+                                    <div class="row">
+
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Reporte del balance hídrico</div>
+                                                <div class="table-responsive">
+                                                    <table id="tab_reporte">
+
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- /.container-fluid -->
+            </div>
+            <!-- Fin del contenedor principal -->
+        </div>
+        <!-- Final contenedor Wrapper -->
+    </div>
+
+    <!--ir al inicio de la página-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Scripts personalizados for all pages-->
+    <script src="static/js/sb-admin-2.min.js"></script>
+
+    <!-- Niveles de página plugins 
+        <script src="static/vendor/chart.js/Chart.min.js"></script>-->
+
+    <!-- Niveles de página scripts personalizados 
+        <script src="static/js/demo/chart-area-demo.js"></script>
+        <script src="static/js/demo/chart-pie-demo.js"></script>-->
+
+</body>
+
+</html>

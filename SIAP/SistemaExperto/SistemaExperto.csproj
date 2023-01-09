@@ -1,0 +1,1277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2088C68B-4704-4DA9-A4F9-53D2821BE7C2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SE</RootNamespace>
+    <AssemblyName>SE</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <BuildPackage>true</BuildPackage>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <UseGlobalApplicationHostFile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.4\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.4\lib\itextsharp.xmlworker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.7.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Exchange.WebServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices.Auth, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorPDF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorPDF2.2.0.0\lib\net40\RazorPDF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorPDF.Legacy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorPDF2.2.0.0\lib\net40\RazorPDF.Legacy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministracionController.cs" />
+    <Compile Include="Controllers\AlertaController.cs" />
+    <Compile Include="Controllers\ArchivoController.cs" />
+    <Compile Include="Controllers\AreaTematicaController.cs" />
+    <Compile Include="Controllers\CapasController.cs" />
+    <Compile Include="Controllers\CapasDepartamentosController.cs" />
+    <Compile Include="Controllers\CapasMunicipiosController.cs" />
+    <Compile Include="Controllers\CargueMasivoController.cs" />
+    <Compile Include="Controllers\CategoriaProbabilidadController.cs" />
+    <Compile Include="Controllers\ClimaController.cs" />
+    <Compile Include="Controllers\CondicionController.cs" />
+    <Compile Include="Controllers\ConvencionesController.cs" />
+    <Compile Include="Controllers\CultivoCicloController.cs" />
+    <Compile Include="Controllers\CultivoController.cs" />
+    <Compile Include="Controllers\CultivoEtapaController.cs" />
+    <Compile Include="Controllers\CultivoDepartamentoController.cs" />
+    <Compile Include="Models\Actividad.cs" />
+    <Compile Include="Models\CultivoMunicipio.cs" />
+    <Compile Include="Controllers\CultivoProductividadController.cs" />
+    <Compile Include="Controllers\CultivoTipoEtapaController.cs" />
+    <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\EfectosController.cs" />
+    <Compile Include="Controllers\EstacionConstantesController.cs" />
+    <Compile Include="Controllers\EstacionController.cs" />
+    <Compile Include="Controllers\EstacionMensualController.cs" />
+    <Compile Include="Controllers\EstacionProductividadController.cs" />
+    <Compile Include="Controllers\EstacionTipoConstantesController.cs" />
+    <Compile Include="Controllers\EstacionTipoController.cs" />
+    <Compile Include="Controllers\EstacionValoresController.cs" />
+    <Compile Include="Controllers\FichaOpcionController.cs" />
+    <Compile Include="Controllers\InformacionAmpliaSec1McipioController.cs" />
+    <Compile Include="Controllers\InformacionAmpliaSec2McipioController.cs" />
+    <Compile Include="Controllers\InformacionAmpliaSeccion1Controller.cs" />
+    <Compile Include="Controllers\InformacionAmpliaSeccion2Controller.cs" />
+    <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\jQueryDataTableParamModel.cs" />
+    <Compile Include="Controllers\ListaOpcionesController.cs" />
+    <Compile Include="Controllers\MunicipioController.cs" />
+    <Compile Include="Controllers\MunicipioEscenarioController.cs" />
+    <Compile Include="Controllers\MunicipioEstacionController.cs" />
+    <Compile Include="Controllers\OfertasController.cs" />
+    <Compile Include="Controllers\OpcionesVisualizacionController.cs" />
+    <Compile Include="Controllers\OpcionTecnologicaController.cs" />
+    <Compile Include="Controllers\ParametrosController.cs" />
+    <Compile Include="Controllers\PrediccionController.cs" />
+    <Compile Include="Controllers\ProductividadController.cs" />
+    <Compile Include="Controllers\RegionalController.cs" />
+    <Compile Include="Controllers\SueloProductividadController.cs" />
+    <Compile Include="Controllers\TerminoController.cs" />
+    <Compile Include="Controllers\TipoOfertaController.cs" />
+    <Compile Include="Controllers\TipoPrediccionesController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\ZonaController.cs" />
+    <Compile Include="Controllers\ZonaEstacionController.cs" />
+    <Compile Include="Controllers\ZonaMensualController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccionesOpciones.cs" />
+    <Compile Include="Models\AreaTematica.cs" />
+    <Compile Include="Models\CapasDepartamentos.cs" />
+    <Compile Include="Models\Capas.cs" />
+    <Compile Include="Models\CapasMunicipios.cs" />
+    <Compile Include="Models\CategoriaProbabilidad.cs" />
+    <Compile Include="Models\Coeficientes.cs" />
+    <Compile Include="Models\Condicion.cs" />
+    <Compile Include="Models\Constantes.cs" />
+    <Compile Include="Models\Convenciones.cs" />
+    <Compile Include="Models\Cultivo.cs" />
+    <Compile Include="Models\CultivoCiclo.cs" />
+    <Compile Include="Models\CultivoDepartamento.cs" />
+    <Compile Include="Models\EstacionProductividad.cs" />
+    <Compile Include="Models\CultivoEtapa.cs" />
+    <Compile Include="Models\CultivoProductividad.cs" />
+    <Compile Include="Models\CultivoTipoEtapa.cs" />
+    <Compile Include="Models\Conglomerado.cs" />
+    <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\Efectos.cs" />
+    <Compile Include="Models\EfectosAcciones.cs" />
+    <Compile Include="Models\EfectosOpciones.cs" />
+    <Compile Include="Models\Estacion.cs" />
+    <Compile Include="Models\EstacionConstantes.cs" />
+    <Compile Include="Models\EstacionMensual.cs" />
+    <Compile Include="Models\EstacionProductividadUsuario.cs" />
+    <Compile Include="Models\EstacionTipo.cs" />
+    <Compile Include="Models\EstacionTipoConstante.cs" />
+    <Compile Include="Models\EstacionValores.cs" />
+    <Compile Include="Models\EstadoFenologico.cs" />
+    <Compile Include="Models\EtapaGrupo.cs" />
+    <Compile Include="Models\FichaOpcion.cs" />
+    <Compile Include="Models\GrupoCultivo.cs" />
+    <Compile Include="Models\InformacionAmpliaSec1Mcipio.cs" />
+    <Compile Include="Models\InformacionAmpliaSec2Mcipio.cs" />
+    <Compile Include="Models\InformacionAmpliaSeccion1.cs" />
+    <Compile Include="Models\InformacionAmpliaSeccion2.cs" />
+    <Compile Include="Models\ListaOpciones.cs" />
+    <Compile Include="Models\MunicipioEscenario.cs" />
+    <Compile Include="Models\Municipio.cs" />
+    <Compile Include="Models\MunicipioEstacion.cs" />
+    <Compile Include="Models\Ofertas.cs" />
+    <Compile Include="Models\Opciones.cs" />
+    <Compile Include="Models\OpcionesVisualizacion.cs" />
+    <Compile Include="Models\OpcionTecnologica.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\Parametros.cs" />
+    <Compile Include="Models\ParametrosCargueMasivo.cs" />
+    <Compile Include="Models\Prediccion.cs" />
+    <Compile Include="Models\SEEntities.cs" />
+    <Compile Include="Models\SueloProductividad.cs" />
+    <Compile Include="Models\Termino.cs" />
+    <Compile Include="Models\TipoOferta.cs" />
+    <Compile Include="Models\TipoPrediccion.cs" />
+    <Compile Include="Models\TipoSuelo.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\VariablesHistoricas.cs" />
+    <Compile Include="Models\Zona.cs" />
+    <Compile Include="Models\ZonaEstacionMensual.cs" />
+    <Compile Include="Models\ZonaEstacion.cs" />
+    <Compile Include="Models\ZonaMensual.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ADCorpoica\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DepartamentoViewModel.cs" />
+    <Compile Include="ViewModels\EstacionMensualViewModel.cs" />
+    <Compile Include="ViewModels\FichaOpcionViewModel.cs" />
+    <Compile Include="ViewModels\ListaOpcionesViewModel.cs" />
+    <Compile Include="ViewModels\MunicipioViewModel.cs" />
+    <Compile Include="Controllers\ConglomeradoController.cs" />
+    <Compile Include="ViewModels\TerminoViewModel.cs" />
+    <Compile Include="Views\GrupoCultivoController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\bootstrap-select.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap_3.2.css" />
+    <Content Include="Content\css\buttons.dataTables.min.css" />
+    <Content Include="Content\css\dateselector.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\fullcalendar.min.css" />
+    <Content Include="Content\css\ie10-viewport-bug-workaround.css" />
+    <Content Include="Content\css\images\buttons.gif" />
+    <Content Include="Content\css\images\toolbar.gif" />
+    <Content Include="Content\css\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\css\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\css\jquery-ui-1.11.1.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\jquery.cleditor.min.css" />
+    <Content Include="Content\css\metro-bootstrap-responsive.css" />
+    <Content Include="Content\css\metro-bootstrap.css" />
+    <Content Include="Content\css\ol.css" />
+    <Content Include="Content\css\ol3-layerswitcher.css" />
+    <Content Include="Content\css\OpcTecnologicas.css" />
+    <Content Include="Content\css\se-mapas.css" />
+    <Content Include="Content\css\se.css" />
+    <Content Include="Content\css\SistemaExperto.css" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font\webhostinghub-glyphs.svg" />
+    <Content Include="Content\imagenes\3.gif" />
+    <Content Include="Content\imagenes\9.gif" />
+    <Content Include="Content\imagenes\ajiIcono.png" />
+    <Content Include="Content\imagenes\ajiTopito1.png" />
+    <Content Include="Content\imagenes\ajiTopito2.png" />
+    <Content Include="Content\imagenes\ajiTopito3.png" />
+    <Content Include="Content\imagenes\alertas_inicio.png" />
+    <Content Include="Content\imagenes\Antioquia-San_Juan.JPG" />
+    <Content Include="Content\imagenes\balls.gif" />
+    <Content Include="Content\imagenes\balls.svg" />
+    <Content Include="Content\imagenes\calendario\calendario_diciembre.png" />
+    <Content Include="Content\imagenes\calendario\calendario_noviembre.png" />
+    <Content Include="Content\imagenes\campesino.JPG" />
+    <Content Include="Content\imagenes\clima_cultivos.png" />
+    <Content Include="Content\imagenes\clima_estaciones.png" />
+    <Content Include="Content\imagenes\clima_inicio.png" />
+    <Content Include="Content\imagenes\clima_predicciones.png" />
+    <Content Include="Content\imagenes\clima_zonas.png" />
+    <Content Include="Content\imagenes\Condiciones\Deficit.png" />
+    <Content Include="Content\imagenes\Condiciones\Deficit_deshabilitada.png" />
+    <Content Include="Content\imagenes\Condiciones\Exceso.png" />
+    <Content Include="Content\imagenes\Condiciones\Exceso_deshabilitada.png" />
+    <Content Include="Content\imagenes\Condiciones\Media.png" />
+    <Content Include="Content\imagenes\Condiciones\Media_deshabilitada.png" />
+    <Content Include="Content\imagenes\convencion_deficit.png" />
+    <Content Include="Content\imagenes\convencion_pais.png" />
+    <Content Include="Content\imagenes\cultivos\agu.png" />
+    <Content Include="Content\imagenes\cultivos\agu_sn.png" />
+    <Content Include="Content\imagenes\cultivos\aji.png" />
+    <Content Include="Content\imagenes\cultivos\aji_sn.png" />
+    <Content Include="Content\imagenes\cultivos\arr.png" />
+    <Content Include="Content\imagenes\cultivos\arr_sn.png" />
+    <Content Include="Content\imagenes\cultivos\ber.png" />
+    <Content Include="Content\imagenes\cultivos\ber_sn.png" />
+    <Content Include="Content\imagenes\cultivos\cac.png" />
+    <Content Include="Content\imagenes\cultivos\cac_sn.png" />
+    <Content Include="Content\imagenes\cultivos\can.png" />
+    <Content Include="Content\imagenes\cultivos\can_sn.png" />
+    <Content Include="Content\imagenes\cultivos\ceb.png" />
+    <Content Include="Content\imagenes\cultivos\ceb_sn.png" />
+    <Content Include="Content\imagenes\cultivos\cho.png" />
+    <Content Include="Content\imagenes\cultivos\cho_sn.png" />
+    <Content Include="Content\imagenes\cultivos\col.png" />
+    <Content Include="Content\imagenes\cultivos\col_sn.png" />
+    <Content Include="Content\imagenes\cultivos\fre.png" />
+    <Content Include="Content\imagenes\cultivos\fre_sn.png" />
+    <Content Include="Content\imagenes\cultivos\gad.png" />
+    <Content Include="Content\imagenes\cultivos\gad_sn.png" />
+    <Content Include="Content\imagenes\cultivos\gal.png" />
+    <Content Include="Content\imagenes\cultivos\gal_sn.png" />
+    <Content Include="Content\imagenes\cultivos\gan1.png" />
+    <Content Include="Content\imagenes\cultivos\gan2.png" />
+    <Content Include="Content\imagenes\cultivos\gra.png" />
+    <Content Include="Content\imagenes\cultivos\gra_sn.png" />
+    <Content Include="Content\imagenes\cultivos\lim.png" />
+    <Content Include="Content\imagenes\cultivos\lim_sn.png" />
+    <Content Include="Content\imagenes\cultivos\lul.png" />
+    <Content Include="Content\imagenes\cultivos\lul_sn.png" />
+    <Content Include="Content\imagenes\cultivos\mai.png" />
+    <Content Include="Content\imagenes\cultivos\mai_sn.png" />
+    <Content Include="Content\imagenes\cultivos\man.png" />
+    <Content Include="Content\imagenes\cultivos\man_sn.png" />
+    <Content Include="Content\imagenes\cultivos\mar.png" />
+    <Content Include="Content\imagenes\cultivos\mar_sn.png" />
+    <Content Include="Content\imagenes\cultivos\mel.png" />
+    <Content Include="Content\imagenes\cultivos\mel_sn.png" />
+    <Content Include="Content\imagenes\cultivos\mor.png" />
+    <Content Include="Content\imagenes\cultivos\mor_sn.png" />
+    <Content Include="Content\imagenes\cultivos\nam.png" />
+    <Content Include="Content\imagenes\cultivos\nam_sn.png" />
+    <Content Include="Content\imagenes\cultivos\nar.png" />
+    <Content Include="Content\imagenes\cultivos\nar_sn.png" />
+    <Content Include="Content\imagenes\cultivos\ovi.png" />
+    <Content Include="Content\imagenes\cultivos\ovi_sn.png" />
+    <Content Include="Content\imagenes\cultivos\pap.png" />
+    <Content Include="Content\imagenes\cultivos\pap_sn.png" />
+    <Content Include="Content\imagenes\cultivos\pas.png" />
+    <Content Include="Content\imagenes\cultivos\pas_sn.png" />
+    <Content Include="Content\imagenes\cultivos\pin.png" />
+    <Content Include="Content\imagenes\cultivos\pin_sn.png" />
+    <Content Include="Content\imagenes\cultivos\pla.png" />
+    <Content Include="Content\imagenes\cultivos\pla_sn.png" />
+    <Content Include="Content\imagenes\cultivos\tom.png" />
+    <Content Include="Content\imagenes\cultivos\tom_sn.png" />
+    <Content Include="Content\imagenes\cultivos\yuc.png" />
+    <Content Include="Content\imagenes\cultivos\yuc_sn.png" />
+    <Content Include="Content\imagenes\default.gif" />
+    <Content Include="Content\imagenes\departamento_cultivos.png" />
+    <Content Include="Content\imagenes\departamento_zonas.png" />
+    <Content Include="Content\imagenes\Disponibilidad1.png" />
+    <Content Include="Content\imagenes\Disponibilidad2.png" />
+    <Content Include="Content\imagenes\Disponibilidad3.png" />
+    <Content Include="Content\imagenes\Disponibilidad4.png" />
+    <Content Include="Content\imagenes\ellipsis.gif" />
+    <Content Include="Content\imagenes\estacionIATLNTIC3.png" />
+    <Content Include="Content\imagenes\Etapa1.png" />
+    <Content Include="Content\imagenes\Etapa2.png" />
+    <Content Include="Content\imagenes\Etapa3.png" />
+    <Content Include="Content\imagenes\Etapa4.png" />
+    <Content Include="Content\imagenes\Etapas\EtapaCiclo1.png" />
+    <Content Include="Content\imagenes\Etapas\EtapaCiclo2.png" />
+    <Content Include="Content\imagenes\Etapas\EtapaCiclo3.png" />
+    <Content Include="Content\imagenes\Etapas\EtapaCiclo4.png" />
+    <Content Include="Content\imagenes\Etapas\EtapaCiclo5.png" />
+    <Content Include="Content\imagenes\Etapas\EtapaCiclo6.png" />
+    <Content Include="Content\imagenes\Etapas\SinEtapaCiclo.png" />
+    <Content Include="Content\imagenes\FondoSE_1.JPG" />
+    <Content Include="Content\imagenes\FondoSE_2.JPG" />
+    <Content Include="Content\imagenes\FondoSE_3.JPG" />
+    <Content Include="Content\imagenes\FondoSE_4.JPG" />
+    <Content Include="Content\imagenes\FondoSE_5.JPG" />
+    <Content Include="Content\imagenes\globos.png" />
+    <Content Include="Content\imagenes\humeda.png" />
+    <Content Include="Content\imagenes\Iconos\aji.png" />
+    <Content Include="Content\imagenes\Iconos\aji_grande.png" />
+    <Content Include="Content\imagenes\Iconos\aptitud.png" />
+    <Content Include="Content\imagenes\Iconos\brillo_solar.png" />
+    <Content Include="Content\imagenes\Iconos\cac.png" />
+    <Content Include="Content\imagenes\Iconos\cambio_climatico.png" />
+    <Content Include="Content\imagenes\Iconos\clima.png" />
+    <Content Include="Content\imagenes\Iconos\conglomerados.png" />
+    <Content Include="Content\imagenes\Iconos\escenarios.png" />
+    <Content Include="Content\imagenes\Iconos\estacion.png" />
+    <Content Include="Content\imagenes\Iconos\estaciones.png" />
+    <Content Include="Content\imagenes\Iconos\Etapa1.png" />
+    <Content Include="Content\imagenes\Iconos\Etapa2.png" />
+    <Content Include="Content\imagenes\Iconos\Etapa3.png" />
+    <Content Include="Content\imagenes\Iconos\Etapa4.png" />
+    <Content Include="Content\imagenes\Iconos\EtapaCiclo1.png" />
+    <Content Include="Content\imagenes\Iconos\EtapaCiclo2.png" />
+    <Content Include="Content\imagenes\Iconos\EtapaCiclo3.png" />
+    <Content Include="Content\imagenes\Iconos\evapotranspiracion.png" />
+    <Content Include="Content\imagenes\Iconos\evento_extremo.png" />
+    <Content Include="Content\imagenes\Iconos\frecuencia.png" />
+    <Content Include="Content\imagenes\Iconos\glosario.png" />
+    <Content Include="Content\imagenes\Iconos\gota_convenciones.png" />
+    <Content Include="Content\imagenes\Iconos\gota_leyenda.svg" />
+    <Content Include="Content\imagenes\Iconos\humedad.png" />
+    <Content Include="Content\imagenes\Iconos\Humedo.png" />
+    <Content Include="Content\imagenes\Iconos\icono-mapa-base.png" />
+    <Content Include="Content\imagenes\Iconos\icono-mapa-cardinal.png" />
+    <Content Include="Content\imagenes\Iconos\mapa.png" />
+    <Content Include="Content\imagenes\Iconos\Normal.png" />
+    <Content Include="Content\imagenes\Iconos\nvdi.png" />
+    <Content Include="Content\imagenes\Iconos\pas.png" />
+    <Content Include="Content\imagenes\Iconos\pastura_grande.png" />
+    <Content Include="Content\imagenes\Iconos\pla.png" />
+    <Content Include="Content\imagenes\Iconos\PracticaManejo.png" />
+    <Content Include="Content\imagenes\Iconos\practicas.png" />
+    <Content Include="Content\imagenes\Iconos\precipitacion.png" />
+    <Content Include="Content\imagenes\Iconos\precipitaciones.png" />
+    <Content Include="Content\imagenes\Iconos\productividad.png" />
+    <Content Include="Content\imagenes\Iconos\Seco.png" />
+    <Content Include="Content\imagenes\Iconos\subzonas.png" />
+    <Content Include="Content\imagenes\Iconos\susceptibilidad.png" />
+    <Content Include="Content\imagenes\Iconos\temperatura.png" />
+    <Content Include="Content\imagenes\Iconos\tiempo.png" />
+    <Content Include="Content\imagenes\Iconos\tom.png" />
+    <Content Include="Content\imagenes\Iconos\tomate_grande.png" />
+    <Content Include="Content\imagenes\Iconos\variabilidad.png" />
+    <Content Include="Content\imagenes\Iconos\viento.png" />
+    <Content Include="Content\imagenes\imagen_clima.png" />
+    <Content Include="Content\imagenes\imagen_inicio.png" />
+    <Content Include="Content\imagenes\loader.gif" />
+    <Content Include="Content\imagenes\logosC-FA-MADR-Prosp-2014.png" />
+    <Content Include="Content\imagenes\Logos\corpoica.png" />
+    <Content Include="Content\imagenes\Logos\fondo_adaptacion.png" />
+    <Content Include="Content\imagenes\Logos\logo_mapa.png" />
+    <Content Include="Content\imagenes\Logos\logo_se.png" />
+    <Content Include="Content\imagenes\Logos\ministerio.png" />
+    <Content Include="Content\imagenes\Logos\slogan.png" />
+    <Content Include="Content\imagenes\Logos\slogan_pais.png" />
+    <Content Include="Content\imagenes\logos_instituciones.png" />
+    <Content Include="Content\imagenes\logo_mapa.png" />
+    <Content Include="Content\imagenes\mapa_analisis.png" />
+    <Content Include="Content\imagenes\mapa_anomalias.png" />
+    <Content Include="Content\imagenes\mapa_balance.png" />
+    <Content Include="Content\imagenes\mapa_conglomerado.png" />
+    <Content Include="Content\imagenes\mapa_deficit.png" />
+    <Content Include="Content\imagenes\mapa_estaciones.png" />
+    <Content Include="Content\imagenes\mapa_nicho.png" />
+    <Content Include="Content\imagenes\Matlab_04_2010.png" />
+    <Content Include="Content\imagenes\modulos\icono-glosario.png" />
+    <Content Include="Content\imagenes\modulos\icono-mapa.png" />
+    <Content Include="Content\imagenes\modulos\icono-productividad.png" />
+    <Content Include="Content\imagenes\municipio-repelon.png" />
+    <Content Include="Content\imagenes\muy_humeda.png" />
+    <Content Include="Content\imagenes\muy_seca.png" />
+    <Content Include="Content\imagenes\normal.png" />
+    <Content Include="Content\imagenes\ofertas_inicio.png" />
+    <Content Include="Content\imagenes\Productividad\d1_c1.png" />
+    <Content Include="Content\imagenes\Productividad\d16_c26.png" />
+    <Content Include="Content\imagenes\ring.gif" />
+    <Content Include="Content\imagenes\rueda.gif" />
+    <Content Include="Content\imagenes\seca.png" />
+    <Content Include="Content\imagenes\wheel.gif" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\imagenes\ANTIOQUIA.json" />
+    <Content Include="Content\imagenes\ANTIOQUIA1.json" />
+    <Content Include="Content\imagenes\map.json" />
+    <Content Include="Content\imagenes\Thumbs.db" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Proxy\proxy.ashx" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Scripts\bootstrap-3.2.js" />
+    <Content Include="Scripts\bootstrap-select.js" />
+    <Content Include="Scripts\buttons.html5.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\dataTables.buttons.js" />
+    <Content Include="Scripts\dataTables.buttons.min.js" />
+    <Content Include="Scripts\date.js" />
+    <Content Include="Scripts\estilos_layers.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\graficas-anomalias_05.js" />
+    <Content Include="Scripts\graficas-anomalias_08.js" />
+    <Content Include="Scripts\graficas-anomalias_13.js" />
+    <Content Include="Scripts\graficas-anomalias_15.js" />
+    <Content Include="Scripts\graficas-anomalias_19.js" />
+    <Content Include="Scripts\graficas-anomalias_20.js" />
+    <Content Include="Scripts\graficas-anomalias_23.js" />
+    <Content Include="Scripts\graficas-anomalias_27.js" />
+    <Content Include="Scripts\graficas-anomalias_25.js" />
+    <Content Include="Scripts\graficas-anomalias_41.js" />
+    <Content Include="Scripts\graficas-anomalias_44.js" />
+    <Content Include="Scripts\graficas-anomalias_47.js" />
+    <Content Include="Scripts\graficas-anomalias_52.js" />
+    <Content Include="Scripts\graficas-anomalias_54.js" />
+    <Content Include="Scripts\graficas-anomalias_68.js" />
+    <Content Include="Scripts\graficas-anomalias_70.js" />
+    <Content Include="Scripts\graficas-anomalias_73.js" />
+    <Content Include="Scripts\graficas-anomalias_76.js" />
+    <Content Include="Scripts\jasny-bootstrap.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.1.js" />
+    <Content Include="Scripts\jquery.cleditor.min.js" />
+    <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.dateselector.js" />
+    <Content Include="Scripts\jquery.flot.categories.min.js" />
+    <Content Include="Scripts\jquery.flot.min.js" />
+    <Content Include="Scripts\jquery.jqplot.min.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-es.js" />
+    <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\jszip.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\ol-debug.js" />
+    <Content Include="Scripts\ol.js" />
+    <Content Include="Scripts\ol3-layerswitcher.js" />
+    <Content Include="Scripts\saat.js" />
+    <Content Include="Scripts\se-mapas.js" />
+    <Content Include="Scripts\se-productividad.js" />
+    <Content Include="Scripts\se.js" />
+    <Content Include="Scripts\se_alerta.js" />
+    <Content Include="Scripts\se_departamento.js" />
+    <Content Include="Scripts\se_municipio.js" />
+    <Content Include="Scripts\se_productividad.js" />
+    <Content Include="Scripts\se_pais.js" />
+    <Content Include="Scripts\se_regional.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="packages.config" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="App_Browsers\qt.browser" />
+    <None Include="Service References\ADCorpoica\Wcf_AuthUsers.disco" />
+    <None Include="Service References\ADCorpoica\configuration91.svcinfo" />
+    <None Include="Service References\ADCorpoica\configuration.svcinfo" />
+    <None Include="Service References\ADCorpoica\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Inicio\About.cshtml" />
+    <Content Include="Views\Inicio\Contact.cshtml" />
+    <Content Include="Views\Clima\Index.cshtml" />
+    <Content Include="Views\Cultivo\Crear.cshtml" />
+    <Content Include="Views\Cultivo\Detalles.cshtml" />
+    <Content Include="Views\Cultivo\Editar.cshtml" />
+    <Content Include="Views\Cultivo\Eliminar.cshtml" />
+    <Content Include="Views\Cultivo\Index.cshtml" />
+    <Content Include="Views\Estacion\Crear.cshtml" />
+    <Content Include="Views\Estacion\Detalles.cshtml" />
+    <Content Include="Views\Estacion\Editar.cshtml" />
+    <Content Include="Views\Estacion\Eliminar.cshtml" />
+    <Content Include="Views\Estacion\Index.cshtml" />
+    <Content Include="Views\Prediccion\Crear.cshtml" />
+    <Content Include="Views\Prediccion\Detalles.cshtml" />
+    <Content Include="Views\Prediccion\Editar.cshtml" />
+    <Content Include="Views\Prediccion\Eliminar.cshtml" />
+    <Content Include="Views\Prediccion\Index.cshtml" />
+    <Content Include="Views\Zona\Crear.cshtml" />
+    <Content Include="Views\Zona\Detalles.cshtml" />
+    <Content Include="Views\Zona\Editar.cshtml" />
+    <Content Include="Views\Zona\Eliminar.cshtml" />
+    <Content Include="Views\Zona\Index.cshtml" />
+    <Content Include="Views\Departamento\Index.cshtml" />
+    <Content Include="Views\Departamento\Detalles.cshtml" />
+    <Content Include="Views\Departamento\Crear.cshtml" />
+    <Content Include="Views\Departamento\Editar.cshtml" />
+    <Content Include="Views\Departamento\Eliminar.cshtml" />
+    <Content Include="Views\Inicio\Index.cshtml" />
+    <Content Include="Views\Regional\Pais.cshtml" />
+    <Content Include="Views\Regional\Departamento.cshtml" />
+    <Content Include="Views\Regional\Municipio.cshtml" />
+    <Content Include="Views\Alerta\Resultado.cshtml" />
+    <Content Include="Views\Alerta\Siembra.cshtml" />
+    <Content Include="Views\Alerta\Presentacion.cshtml" />
+    <Content Include="Views\Municipio\Crear.cshtml" />
+    <Content Include="Views\Municipio\Detalles.cshtml" />
+    <Content Include="Views\Municipio\Editar.cshtml" />
+    <Content Include="Views\Municipio\Eliminar.cshtml" />
+    <Content Include="Views\Municipio\Index.cshtml" />
+    <Content Include="Views\ZonaEstacion\Crear.cshtml" />
+    <Content Include="Views\ZonaEstacion\Detalles.cshtml" />
+    <Content Include="Views\ZonaEstacion\Editar.cshtml" />
+    <Content Include="Views\ZonaEstacion\Eliminar.cshtml" />
+    <Content Include="Views\ZonaEstacion\Index.cshtml" />
+    <Content Include="Views\EstacionMensual\Crear.cshtml" />
+    <Content Include="Views\EstacionMensual\Detalles.cshtml" />
+    <Content Include="Views\EstacionMensual\Editar.cshtml" />
+    <Content Include="Views\EstacionMensual\Eliminar.cshtml" />
+    <Content Include="Views\EstacionMensual\Index.cshtml" />
+    <Content Include="Views\ZonaMensual\Crear.cshtml" />
+    <Content Include="Views\ZonaMensual\Detalles.cshtml" />
+    <Content Include="Views\ZonaMensual\Editar.cshtml" />
+    <Content Include="Views\ZonaMensual\Eliminar.cshtml" />
+    <Content Include="Views\ZonaMensual\Index.cshtml" />
+    <Content Include="Views\Ofertas\Create.cshtml" />
+    <Content Include="Views\Ofertas\Delete.cshtml" />
+    <Content Include="Views\Ofertas\Detalles.cshtml" />
+    <Content Include="Views\Ofertas\Edit.cshtml" />
+    <Content Include="Views\Ofertas\Index.cshtml" />
+    <Content Include="Views\Ofertas\OpcionesTecnologicas.cshtml" />
+    <Content Include="Views\Ofertas\Registro.cshtml" />
+    <Content Include="Views\Ofertas\Opciones.cshtml" />
+    <Content Include="Views\Ofertas\EtapaCultivo.cshtml" />
+    <Content Include="Views\Clima\Menu.cshtml" />
+    <None Include="Service References\ADCorpoica\Wcf_AuthUsers.wsdl">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Inicio\Error.cshtml" />
+    <Content Include="Views\Inicio\Versionamiento.cshtml" />
+    <Content Include="Views\Usuario\Crear.cshtml" />
+    <Content Include="Views\Usuario\Detalles.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
+    <Content Include="Views\Usuario\Eliminar.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Termino\Crear.cshtml" />
+    <Content Include="Views\Termino\Eliminar.cshtml" />
+    <Content Include="Views\Termino\Detalles.cshtml" />
+    <Content Include="Views\Termino\Editar.cshtml" />
+    <Content Include="Views\Termino\Index.cshtml" />
+    <Content Include="Views\Termino\DefinicionAmplia.cshtml" />
+    <Content Include="Views\Termino\Arbol.cshtml" />
+    <Content Include="Views\Productividad\Index.cshtml" />
+    <Content Include="Views\CultivoProductividad\Crear.cshtml" />
+    <Content Include="Views\CultivoProductividad\Eliminar.cshtml" />
+    <Content Include="Views\CultivoProductividad\Detalles.cshtml" />
+    <Content Include="Views\CultivoProductividad\Editar.cshtml" />
+    <Content Include="Views\CultivoProductividad\Index.cshtml" />
+    <Content Include="Views\Inicio\Submenu.cshtml" />
+    <Content Include="Views\Parametros\Crear.cshtml" />
+    <Content Include="Views\Parametros\Eliminar.cshtml" />
+    <Content Include="Views\Parametros\Detalles.cshtml" />
+    <Content Include="Views\Parametros\Editar.cshtml" />
+    <Content Include="Views\Parametros\Index.cshtml" />
+    <Content Include="Views\CultivoDepartamento\Crear.cshtml" />
+    <Content Include="Views\CultivoDepartamento\Eliminar.cshtml" />
+    <Content Include="Views\CultivoDepartamento\Detalles.cshtml" />
+    <Content Include="Views\CultivoDepartamento\Editar.cshtml" />
+    <Content Include="Views\CultivoDepartamento\Index.cshtml" />
+    <Content Include="Views\EstacionProductividad\Crear.cshtml" />
+    <Content Include="Views\EstacionProductividad\Eliminar.cshtml" />
+    <Content Include="Views\EstacionProductividad\Detalles.cshtml" />
+    <Content Include="Views\EstacionProductividad\Editar.cshtml" />
+    <Content Include="Views\EstacionProductividad\Index.cshtml" />
+    <Content Include="Views\SueloProductividad\Crear.cshtml" />
+    <Content Include="Views\SueloProductividad\Eliminar.cshtml" />
+    <Content Include="Views\SueloProductividad\Detalles.cshtml" />
+    <Content Include="Views\SueloProductividad\Editar.cshtml" />
+    <Content Include="Views\SueloProductividad\Index.cshtml" />
+    <Content Include="Views\Termino\Informe.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\TipoPredicciones\Crear.cshtml" />
+    <Content Include="Views\TipoPredicciones\Eliminar.cshtml" />
+    <Content Include="Views\TipoPredicciones\Detalles.cshtml" />
+    <Content Include="Views\TipoPredicciones\Editar.cshtml" />
+    <Content Include="Views\TipoPredicciones\Index.cshtml" />
+    <Content Include="Views\Administracion\Productividad.cshtml" />
+    <Content Include="Views\Administracion\Mapa.cshtml" />
+    <Content Include="Views\Administracion\Glosario.cshtml" />
+    <Content Include="Views\GrupoCultivo\Crear.cshtml" />
+    <Content Include="Views\GrupoCultivo\Eliminar.cshtml" />
+    <Content Include="Views\GrupoCultivo\Detalles.cshtml" />
+    <Content Include="Views\GrupoCultivo\Editar.cshtml" />
+    <Content Include="Views\GrupoCultivo\Index.cshtml" />
+    <Content Include="Views\Productividad\Productividad2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\logs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipoConstantes\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipoConstantes\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipoConstantes\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipoConstantes\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipoConstantes\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionValores\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionValores\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionValores\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionValores\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionValores\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionConstantes\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionConstantes\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionConstantes\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionConstantes\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionConstantes\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipo\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipo\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipo\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipo\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EstacionTipo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEstacion\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEstacion\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEstacion\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEstacion\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEstacion\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Capas\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Capas\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Capas\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Capas\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Capas\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasDepartamentos\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasDepartamentos\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasDepartamentos\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasDepartamentos\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasDepartamentos\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionesVisualizacion\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionesVisualizacion\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionesVisualizacion\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionesVisualizacion\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionesVisualizacion\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Convenciones\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Convenciones\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Convenciones\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Convenciones\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Convenciones\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasMunicipios\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasMunicipios\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasMunicipios\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasMunicipios\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CapasMunicipios\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Administracion\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Administracion\Parametros.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion1\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion1\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion1\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion1\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion1\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion2\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion2\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion2\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion2\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSeccion2\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CategoriaProbabilidad\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CategoriaProbabilidad\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CategoriaProbabilidad\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CategoriaProbabilidad\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CategoriaProbabilidad\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ofertas\OpcionesRegional.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ofertas\OpcionesLocal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ofertas\FichaOTLocal.cshtml" />
+    <Content Include="Views\Ofertas\FichaOTRegional.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AreaTematica\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AreaTematica\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AreaTematica\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AreaTematica\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AreaTematica\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionTecnologica\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionTecnologica\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionTecnologica\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionTecnologica\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OpcionTecnologica\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TipoOferta\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TipoOferta\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TipoOferta\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TipoOferta\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TipoOferta\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ListaOpciones\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ListaOpciones\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ListaOpciones\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ListaOpciones\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ListaOpciones\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FichaOpcion\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FichaOpcion\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FichaOpcion\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FichaOpcion\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FichaOpcion\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec1Mcipio\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec1Mcipio\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec1Mcipio\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec1Mcipio\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec1Mcipio\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec2Mcipio\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec2Mcipio\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec2Mcipio\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec2Mcipio\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InformacionAmpliaSec2Mcipio\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\font\webhostinghub-glyphs.eot" />
+    <Content Include="Content\font\webhostinghub-glyphs.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoCiclo\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoCiclo\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoCiclo\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoCiclo\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoCiclo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoTipoEtapa\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoTipoEtapa\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoTipoEtapa\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoTipoEtapa\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoTipoEtapa\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoEtapa\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoEtapa\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoEtapa\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoEtapa\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CultivoEtapa\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CargueMasivo\LeeRutaExcel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CargueMasivo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CargueMasivo\RegistroMasivo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Efectos\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Efectos\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Efectos\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Efectos\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Efectos\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Condicion\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Condicion\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Condicion\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Condicion\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Condicion\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEscenario\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEscenario\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEscenario\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEscenario\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MunicipioEscenario\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ofertas\Informe.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Conglomerado\Crear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Conglomerado\Eliminar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Conglomerado\Detalles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Conglomerado\Editar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Conglomerado\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ofertas\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ADCorpoica\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2070</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2070/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

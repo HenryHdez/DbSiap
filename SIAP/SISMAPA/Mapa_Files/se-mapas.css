@@ -1,0 +1,143 @@
+﻿/*#region Caja de créditos para mapa base */
+.ol-attribution {
+    bottom: 190px;
+}
+
+    .ol-attribution ul {
+        font-size: 1.1rem;
+        line-height: 1.375em;
+        color: black;
+        text-shadow: 0 0 2px #fff;
+    }
+
+.ol-control button {
+    background-color: rgba(41,171,226,1);
+    color: white;
+}
+
+    .ol-control button:hover, .ol-control button:focus {
+        background-color: none;
+        color: white;
+    }
+/*#endregion */
+
+/*#region Controles de mapa */
+.ol-scale-line {
+    top: 10px;
+    bottom: auto;
+    right: 10px;
+    left: auto;
+    background-color: rgba(41,171,226,1);
+    text-align: justify;
+}
+
+.ol-scale-line-inner {
+    font-size: 14px;
+}
+
+.ol-full-screen {
+    right: 10px;
+    top: 40px;
+    font-size: 25px;
+}
+
+    .ol-full-screen button {
+        background-color: rgba(41,171,226,1);
+    }
+
+.ol-zoom {
+    top: 80px;
+    right: 10px;
+    left: inherit;
+    font-size: 25px;
+    background-color: white;
+    border-radius: 1px;
+}
+
+.ol-zoom-out {
+    margin-top: 5px;
+}
+
+.ol-zoom button {
+    background-color: rgba(41,171,226,1);
+}
+
+.ol-mycontrol {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    position: absolute;
+    bottom: 240px;
+    right: 10px;
+}
+
+
+.layer-switcher {
+    position: absolute;
+    top: 170px;
+    right: 10px;
+    text-align: left;
+}
+
+    .layer-switcher button {
+        background-image: url('../imagenes/Iconos/icono-mapa-base.png');
+        background-color: rgba(255, 255, 255, 0.4);
+        background-position: 0px;
+    }
+/*#endregion */
+
+/*#region Ícono de carga */
+#load {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    background: url('../imagenes/rueda.gif') no-repeat center center rgba(0,0,0,0.25);
+}
+/*#endregion */
+
+.navbar-default {
+    background-color: white;
+    border-color: white;
+}
+
+.enlace-modulos {
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    transform: scale(1,1.5);
+    -webkit-transform: scale(1,1.25); /* Safari and Chrome */
+    -moz-transform: scale(1,1.25); /* Firefox */
+    -ms-transform: scale(1,1.25); /* IE 9+ */
+    -o-transform: scale(1,1.25); /* Opera */
+}
+
+    .enlace-modulos:hover, enlace-modulos:active {
+        text-decoration: none;
+    }
+
+.enlace-mapa:hover, .enlace-mapa:active {
+    color: #662E8F !important;
+}
+
+.enlace-productividad:hover, .enlace-productividad:active {
+    color: #00A99D !important;
+}
+
+.enlace-glosario:hover, .enlace-glosario:active {
+    color: #9E005D !important;
+}
+
+/*Control de coordenadas del mapa*/
+.ol-mouse-position {
+    top: 8px;
+    right: 150px;
+    background-color: rgba(255,255,255,0.75);
+    padding: 3px;
+    border: 2px solid rgb(41,171,226);
+    width: 150px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+    .layer-switcher > .panel > ul > li:not(.group) {
+        display: none;
+    }

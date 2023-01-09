@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Modulo D-MAPA-</title>
+
+    <!-- Fuentes-->
+    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Estilos-->
+    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="./static/scripts/Pintar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/510/fabric.min.js"></script>
+</head>
+
+<body id="page-top">
+    <!-- Empaque de la página -->
+    <div id="wrapper">
+
+        <!-- Barra lateral -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Barra lateral -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon rotate-n-15"></div>
+                <div class="sidebar-brand-text mx-3">Información Agroclimática</div>
+            </a>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Cabecera -->
+            <div class="sidebar-heading">
+                Contenido
+            </div>
+
+            <!-- Nav Item - Graficos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Gráficas</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="./Balancehidri.html">Balance hídrico</a>
+                        <!--<a class="collapse-item" href="templates/cards.html">Variable 2</a>-->
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Mapas -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMapas" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-map"></i>
+                    <span>Mapas</span>
+                </a>
+                <div id="collapseMapas" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="./brillo.html">Brillo solar</a>
+                        <a class="collapse-item" href="./Evotrans.html">Evotranspiración</a>
+                        <a class="collapse-item" href="./Humedadrel.html">Humedad relativa</a>
+                        <a class="collapse-item" href="./Precipita.html">Precipitación</a>
+                        <a class="collapse-item" href="./Tempmax.html">Temperatura máxima</a>
+                        <a class="collapse-item" href="./Tempmed.html">Temperatura media</a>
+                        <a class="collapse-item" href="./Tempmin.html">Temperatura mínima</a>
+                        <a class="collapse-item" href="./Nino_nina.html">F. Niño y niña</a>
+                        <div class="collapse-divider" style="text-align: justify;">Aquí encontrará seis (6) variables y su representación cartográfica en el departamento de cundinamarca.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Tablas 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTables" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Consultas</span>
+                </a>
+                <div id="collapseTables" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="./Tabla_Balancehidri.html">Balance hídrico</a>
+                        <a class="collapse-item" href="utilities-border.html">Variable 2</a>
+                        <a class="collapse-item" href="utilities-animation.html">Variable 3</a>
+                    </div>
+                </div>
+            </li>-->
+
+        </ul>
+        <!-- Fin de la barra lateral -->
+
+        <!-- Contenido -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Contenido principal -->
+            <div id="content">
+                <!-- Contenido de la pagina -->
+                <div class="container-fluid">
+                    <!-- contenido de la fila -->
+                    <div class="row">
+                        <!-- Area Chart -->
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <!--Titulo y menú del gráfico-->
+                                    <h6 class="m-0 font-weight-bold text-primary" style="text-align: center; font-size:180%;">Humedad relativa</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Opción de descarga:</div>
+                                            <a class="dropdown-item" href="./static/img/Humedad_relativa/Humedad_relativa.zip">Imágenes</a>
+                                            <a class="dropdown-item" href="#">Animación</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Menu de selección-->
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-P1-tab" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-P1" aria-selected="true" style="text-align: center; font-size:140%;">Galería</a>
+                            <a class="nav-item nav-link" id="nav-P3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-P3" aria-selected="false" style="text-align: center; font-size:140%;">Resumen</a>
+                            <a class="nav-item nav-link" id="nav-P2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-P2" aria-selected="false" style="text-align: center; font-size:140%;">Animación</a>
+                        </div>
+                    </nav>
+
+                    <!--Mapas por mes del año-->
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-P1-tab">
+                            <div class="card border-info mb-3">
+                                <div class="card-body text-info" style="text-align: center;">
+                                    <div style="text-align: center; font-size:140%;">
+                                        <a onclick="Rotarimagen_izquierda(2)" class="btn btn-info btn-circle btn-lg">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </a>
+                                        Mes del año:
+                                        <select id="Opc_mes_ano" onchange="Rotarimagen_select(2)" style="text-align: center; font-size:100%;">
+                                            <option value = 0 selected>Enero</option>
+                                            <option value = 1>Febrero</option>
+                                            <option value = 2>Marzo</option>
+                                            <option value = 3>Abril</option>
+                                            <option value = 4>Mayo</option>
+                                            <option value = 5>Junio</option>
+                                            <option value = 6>Julio</option>
+                                            <option value = 7>Agosto</option>
+                                            <option value = 8>Septiembre</option>
+                                            <option value = 9>Octubre</option>
+                                            <option value = 10>Noviembre</option>
+                                            <option value = 11>Diciembre</option>
+                                        </select>
+
+                                        <a onclick="Rotarimagen_derecha(2)" class="btn btn-info btn-circle btn-lg">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                    <img id="Ima_estatica" onclick="graficar_2(this, 1)" data-toggle="modal" data-target="#modal" src="./static/img/Humedad_relativa/HR_01_ENE.jpg" width="600" height="800px">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Modal para presentar mapas-->
+                        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Vista del mapa</h5>
+                                        <button class="close" type="button" data-dismiss="modal" onclick="cerran_canva()" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                    </div>
+                                    <div class="modal-body" style="text-align: center;">
+                                        <canvas id="mapa_ani" width="1050" height="1300">Su navegador no permite visualizar el gráfico.</canvas>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="cerran_canva()">Salir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Animación-->
+                        <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-P2-tab">
+                            <div class="card border-info mb-3" style="text-align: center;">
+                                <div class="card-body text-info">
+                                    <div id="Mes_Anima" style="font-size:140%;">Mes del año: Enero</div>
+                                    <div>
+                                        Seleccione opción:
+                                        <a onclick="Rotarimagen(2)" class="btn btn-info btn-circle btn-sm">
+                                            <i class="fas fa-play"></i>
+                                        </a>
+                                        <a onclick="clearInterval(intervalo)" class="btn btn-info btn-circle btn-sm">
+                                            <i class="fas fa-stop"></i>
+                                        </a>
+                                    </div>
+                                    <img id="Ima_estatica_2" src="./static/img/Humedad_relativa/HR_01_ENE.jpg" width="600" height="800px">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--Información trimestral-->
+                        <div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-P2-tab">
+                            <div class="card-body text-info" style="text-align: center;">
+                                <div style="text-align: center; font-size:140%;">
+                                    <a onclick="Rotarimagen_izquierda_trim(2)" class="btn btn-info btn-circle btn-lg">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                    <select id="Opc_mes_trim" onchange="Rotarimagen_select_trim(2)" style="text-align: center; font-size:100%;">
+                                        <option value = 0 selected>Promedio anual</option>
+                                        <option value = 1>Trimestre: diciembre a febrero</option>
+                                        <option value = 2>Trimestre: marzo a mayo</option>
+                                        <option value = 3>Trimestre: junio a agosto</option>
+                                        <option value = 4>Trimestre: septiembre a noviembre</option>
+                                    </select>
+
+                                    <a onclick="Rotarimagen_derecha_trim(2)" class="btn btn-info btn-circle btn-lg">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <img id="Ima_estatica_trim" onclick="graficar_2(this, 1)" data-toggle="modal" data-target="#modal" src="./static/img/Humedad_relativa/HR_01_ENE.jpg" width="600" height="800px">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Fin del contenedor principal -->
+                </div>
+                <!-- Final contenedor Wrapper -->
+            </div>
+
+            <!--ir al inicio de la página-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Bootstrap core JavaScript-->
+            <script src="static/vendor/jquery/jquery.min.js"></script>
+            <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Core plugin JavaScript-->
+            <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <!-- Scripts personalizados for all pages-->
+            <script src="static/js/sb-admin-2.min.js"></script>
+
+            <!-- Niveles de página plugins 
+        <script src="static/vendor/chart.js/Chart.min.js"></script>-->
+
+            <!-- Niveles de página scripts personalizados 
+        <script src="static/js/demo/chart-area-demo.js"></script>
+        <script src="static/js/demo/chart-pie-demo.js"></script>-->
+
+</body>
+
+</html>
