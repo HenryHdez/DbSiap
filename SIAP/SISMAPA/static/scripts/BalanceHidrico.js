@@ -19,41 +19,61 @@ let ETcaj_mm = []; //R[14]
 let Perc_Prof_mm = []; //R[15]
 let Dr_Final_mm = []; //R[16]
 let bandera = false;
+let opc1 = 0;
+
+function Total_dias() {
+    if (opc1 == 3) {
+        var Hoy = new Date("2021-09-10");
+    } else { var Hoy = new Date(); }
+    var Hoy_str = Hoy.getFullYear() + "-" + (Hoy.getMonth() + 1) + "-" + Hoy.getDate();
+    var Fecha_siem = document.getElementById("Fechao").value;
+    var uno_d = new Date(Hoy_str);
+    var dos_d = new Date(Fecha_siem);
+    var Total_d = Math.round((uno_d.getTime() - dos_d.getTime()) / (1000 * 60 * 60 * 24));
+    return Total_d;
+}
+
+function formato_fecha(fech_mem) {
+    var dd = fech_mem.getDate();
+    var mm = fech_mem.getMonth() + 1; //January is 0!
+    var yyyy = fech_mem.getFullYear();
+    if (dd < 10) { dd = '0' + dd; }
+    if (mm < 10) { mm = '0' + mm; }
+    fech_mem = yyyy + '-' + mm + '-' + dd;
+    return fech_mem;
+}
+
+function saturador(eti) {
+    if (document.getElementById(eti).max < document.getElementById(eti).value) {
+        document.getElementById(eti).value = document.getElementById(eti).max;
+    }
+    if (document.getElementById(eti).value < document.getElementById(eti).min) {
+        document.getElementById(eti).value = document.getElementById(eti).min;
+    }
+}
 
 function Var_iniciales() {
     //Condiciones iniciales
+    var today = formato_fecha(new Date());
     document.getElementById("Fechao").disabled = false;
-    document.getElementById("dias").disabled = false;
-    document.getElementById("CC").disabled = false;
-    document.getElementById("PMP").disabled = false;
-    document.getElementById("DA").disabled = false;
-    document.getElementById("Kco").disabled = false;
-    document.getElementById("Kcm").disabled = false;
-    document.getElementById("Kcf").disabled = false;
-    document.getElementById("Fa1").disabled = false;
-    document.getElementById("dias").max = 144;
+    document.getElementById("Fechao").max = today;
+    document.getElementById("Fechao").min = "2020-01-01";
+    document.getElementById("Fechao").value = "2022-06-06";
+    var Tot_dia = Total_dias();
+    if (Tot_dia < 152) {
+        document.getElementById("dias").value = Tot_dia;
+        document.getElementById("dias").max = Tot_dia;
+    } else {
+        document.getElementById("dias").value = 152;
+        document.getElementById("dias").max = 152;
+    }
+
     //OPCIÓN
-    let opc1 = document.getElementById("opcion_dat").value;
-    if (opc1 == 0) {
-        document.getElementById("CC").value = 77.7;
-        document.getElementById("PMP").value = 54.95;
-        document.getElementById("DA").value = 0.646;
-        document.getElementById("Kco").value = 0.86;
-        document.getElementById("Kcm").value = 1.07;
-        document.getElementById("Kcf").value = 0.67;
-        document.getElementById("Fa1").value = 0.35;
+    opc1 = document.getElementById("opcion_dat").value;
+
+    if (opc1 == 1) {
         document.getElementById("Fechao").disabled = true;
-        document.getElementById("dias").disabled = true;
-        document.getElementById("CC").disabled = true;
-        document.getElementById("PMP").disabled = true;
-        document.getElementById("DA").disabled = true;
-        document.getElementById("Kco").disabled = true;
-        document.getElementById("Kcm").disabled = true;
-        document.getElementById("Kcf").disabled = true;
-        document.getElementById("Fa1").disabled = true;
-    } else if (opc1 == 1) {
-        document.getElementById("Fechao").value = "2022-01-01";
-        document.getElementById("dias").value = 144;
+        document.getElementById("dias").value = 138;
         document.getElementById("CC").value = 77.7;
         document.getElementById("PMP").value = 54.95;
         document.getElementById("DA").value = 0.646;
@@ -61,9 +81,9 @@ function Var_iniciales() {
         document.getElementById("Kcm").value = 1.07;
         document.getElementById("Kcf").value = 0.67;
         document.getElementById("Fa1").value = 0.35;
+        document.getElementById("dias").max = 138;
+        document.getElementById("Fechao").value = "2021-02-03";
     } else if (opc1 == 2) {
-        document.getElementById("Fechao").value = "2022-01-01";
-        document.getElementById("dias").value = 144;
         document.getElementById("CC").value = 77.7;
         document.getElementById("PMP").value = 54.95;
         document.getElementById("DA").value = 0.646;
@@ -72,8 +92,6 @@ function Var_iniciales() {
         document.getElementById("Kcf").value = 0.67;
         document.getElementById("Fa1").value = 0.35;
     } else if (opc1 == 3) {
-        document.getElementById("Fechao").value = "2022-01-01";
-        document.getElementById("dias").value = 144;
         document.getElementById("CC").value = 77.7;
         document.getElementById("PMP").value = 54.95;
         document.getElementById("DA").value = 0.646;
@@ -81,9 +99,9 @@ function Var_iniciales() {
         document.getElementById("Kcm").value = 1.07;
         document.getElementById("Kcf").value = 0.67;
         document.getElementById("Fa1").value = 0.35;
+        document.getElementById("Fechao").value = "2021-01-01";
+        document.getElementById("Fechao").max = "2021-09-09";
     } else if (opc1 == 4) {
-        document.getElementById("Fechao").value = "2022-01-01";
-        document.getElementById("dias").value = 144;
         document.getElementById("CC").value = 77.7;
         document.getElementById("PMP").value = 54.95;
         document.getElementById("DA").value = 0.646;
@@ -92,64 +110,124 @@ function Var_iniciales() {
         document.getElementById("Kcf").value = 0.67;
         document.getElementById("Fa1").value = 0.35;
     }
+}
 
+function act_fecha_dia() {
+    var Total_d = Total_dias();
+    if (Total_d < 152) {
+        document.getElementById("dias").value = Total_d;
+        document.getElementById("dias").max = Total_d;
+    } else {
+        document.getElementById("dias").value = 152;
+        document.getElementById("dias").max = 152;
+    }
+    document.getElementById("dias").disabled = false;
+    if (Total_d <= 0) {
+        document.getElementById("dias").disabled = true;
+        document.getElementById("dias").value = 1;
+    }
 }
 
 function Leer_csv() {
+    if (document.getElementById("dias").value <= 0) {
+        document.getElementById("dias").value = 1;
+    }
     if (bandera == false) {
         Var_iniciales();
         bandera = true;
     }
     try {
+        let longitud = parseInt(document.getElementById("dias").value);
+        var Fecha_siem = document.getElementById("Fechao").value;
+        opc1 = document.getElementById("opcion_dat").value;
         //Reiniciar valores
         Fechas = []
         Eto_Calc_mm_d_1 = []
         Etc_mm_d_1 = []
         Precipitacion_mm = [];
         //Atributos de la matriz
-        Fecha = []; //          R[1]
-        P_mm = []; //P(mm)          R[2]
-        Eto_mm = []; //Eto(mm)      R[3]
-        J = []; //dia               R[4]
-        Longitud_raiz_m = []; // R[5]
-        Kc = []; // R[6]
-        ADT_mm = []; // R[7]
-        p_aj_mm = []; // R[8]
-        AFA_mm = []; // R[9]
+        Fecha = []; //R[1]
+        P_mm = []; //R[2]    P(mm)          
+        Eto_mm = []; //R[3]    Eto(mm)      
+        J = []; //R[4]    dia               
+        Longitud_raiz_m = []; //R[5]
+        Kc = []; //R[6]
+        ADT_mm = []; //R[7]
+        p_aj_mm = []; //R[8]
+        AFA_mm = []; //R[9]
         Lamina_bruta_mm = []; //R[10]
         P_efec_mm = []; //R[11]
         Ks = []; //R[13] 
         ETcaj_mm = []; //R[14]  
         Perc_Prof_mm = []; //R[15]
         Dr_Final_mm = []; //R[16]
-        let longitud = document.getElementById("dias").value; //array.length
         //Leer csv
-        var array = archivojson();
-        //Leer fechas
-        for (var i = 0; i < longitud; i++) {
-            Fechas.push(array[i]["Fecha"].toString());
-            Eto_Calc_mm_d_1.push(+array[i]["Eto_Calc_mm_d-1"]);
-            Etc_mm_d_1.push(+array[i]["Etc_mm_d-1"]);
-            Precipitacion_mm.push(+array[i]["Precipitacion (mm)"]);
+        if (opc1 <= 1) {
+            var array = archivojson();
+            //Leer fechas
+            for (var i = 0; i < longitud; i++) {
+                Fechas.push(array[i]["Fecha"].toString());
+                Eto_Calc_mm_d_1.push(+array[i]["Eto_Calc_mm_d-1"]);
+                Etc_mm_d_1.push(+array[i]["Etc_mm_d-1"]);
+                Precipitacion_mm.push(+array[i]["Precipitacion (mm)"]);
+            }
+            /*Vector de fechas
+            const inicio = new Date(Fecha_siem);
+            for (var i = 0; i < longitud; i++) {
+                inicio.setDate(inicio.getDate() + 1);
+                let feaux = " " + inicio
+                Fechas.push(feaux);
+            }*/
+        } else {
+            var Est = 0;
+            var Fech = "Est1_Fecha";
+            if (opc1 == 2) {
+                Est = JSON.parse(Estacion1);
+                Fech = "Est1_Fecha";
+            } else if (opc1 == 3) {
+                Est = JSON.parse(Estacion2);
+                Fech = "Est2_Fecha";
+            } else {
+                Est = JSON.parse(Estacion3);
+                Fech = "Est3_Fecha";
+            }
+            //Datos de la estacion
+            var Fecha_siem_1 = document.getElementById("Fechao").value;
+            var Fecha_siem_2 = new Date(Fecha_siem_1);
+            Fecha_siem_2.setDate(Fecha_siem_2.getDate() + longitud);
+            Fecha_siem_2 = formato_fecha(Fecha_siem_2);
+            let L_json = Object.keys(Est[0][Fech]).length;
+            //Extraer del json
+            for (var i = 0; i < longitud; i++) {
+                var memoria_ETO = 0;
+                var memoria_Prec = 0;
+                var Fecha_siem_3 = new Date(Fecha_siem_1);
+                Fecha_siem_3.setDate(Fecha_siem_3.getDate() + i);
+                Fecha_siem_3 = formato_fecha(Fecha_siem_3).toString();
+                for (var j = 0; j < L_json; j++) {
+                    var Fecha_temp = formato_fecha(new Date(Est[0][Fech][j].toString()));
+                    if (Fecha_temp == Fecha_siem_3) {
+                        memoria_ETO = parseFloat(Est[0]["E3_Evapotrans"][j]) + memoria_ETO;
+                        memoria_ETO = Math.round(memoria_ETO * 100) / 100;
+                        memoria_Prec = parseFloat(Est[0]["A2_Precipitation_sum"][j]) + memoria_Prec;
+                        memoria_Prec = Math.round(memoria_Prec * 100) / 100;
+                    }
+                }
+                Fechas.push(Fecha_siem_3);
+                Eto_Calc_mm_d_1.push(memoria_ETO);
+                Precipitacion_mm.push(memoria_Prec);
+            }
         }
         //Promedio
         let sum = Eto_Calc_mm_d_1.reduce((previous, current) => current += previous);
         let mean = sum / Eto_Calc_mm_d_1.length;
-        //Vector de fechas
-        const inicio = new Date(2021, 1, 2);
-        var seq_fechas = [];
-        for (var i = 0; i < longitud; i++) {
-            inicio.setDate(inicio.getDate() + 1);
-            let feaux = " " + inicio
-            seq_fechas.push(feaux);
-        }
         //DATOS DE ENTRADA
         let delta = 1; //delta de dias para simular
 
         //Suelo
-        let CC = document.getElementById("CC").value; //77.7; //Capacidad de campo a 0.1 cbar(%g) (52 % vol_3, 49.2%_2, 53.53%_1)
-        let pmp = document.getElementById("PMP").value; //54.95; //Punto de marchitez permanente (%g)(35.5% vol_3, 29.5%_2,35.1%_1)
-        let da = document.getElementById("DA").value; //0.646; //Densidad aparente (-)(0.646_3, 0.65_2,0.646_1) 
+        let CC = parseFloat(document.getElementById("CC").value); //77.7; //Capacidad de campo a 0.1 cbar(%g) (52 % vol_3, 49.2%_2, 53.53%_1)
+        let pmp = parseFloat(document.getElementById("PMP").value); //54.95; //Punto de marchitez permanente (%g)(35.5% vol_3, 29.5%_2,35.1%_1)
+        let da = parseFloat(document.getElementById("DA").value); //0.646; //Densidad aparente (-)(0.646_3, 0.65_2,0.646_1) 
         //Planta
         let Rmin = 0.05; //Longitud de raíz máxima(m) 
         let Rmax = 0.30; //Longitud de raá½z máxima (m)
@@ -159,15 +237,15 @@ function Leer_csv() {
         let Kydes = 0.8; //Factor del cultivo 
         let Kymed = 0.7; //Factor del cultivo 
         let Kyfin = 0.2; //Factor del cultivo 
-        let Kcini = document.getElementById("Kco").value; // 0.86; //Coeficientes del cultivo por etapas
-        let Kcmed = document.getElementById("Kcm").value; // 1.07;
-        let Kcfin = document.getElementById("Kcf").value; // 0.67;
+        let Kcini = parseFloat(document.getElementById("Kco").value); // 0.86; //Coeficientes del cultivo por etapas
+        let Kcmed = parseFloat(document.getElementById("Kcm").value); // 1.07;
+        let Kcfin = parseFloat(document.getElementById("Kcf").value); // 0.67;
         let Lini = 27; // Duración etapa (dias) Para ciclo 2:35
         let Ldes = 39; // Para ciclo 2:30
         let Lmed = 47; // Para ciclo 2:53
         let Lfin = 42; // Para ciclo 2:20
-        let pini = 1.0 * document.getElementById("Fa1").value; //0.35; //Factor de agotamiento (-)
-        let pdes = 1.0 * document.getElementById("Fa1").value; //
+        let pini = parseFloat(document.getElementById("Fa1").value); //0.35; //Factor de agotamiento (-)
+        let pdes = parseFloat(document.getElementById("Fa1").value); //
         //////Calculo de agua disponible total//
         let ADT = 1000 * ((CC - pmp) / 100) * da; //ADT (mm/m)
         let a = 0.9; //Porcentaje para Precipitacion efectiva
@@ -176,14 +254,13 @@ function Leer_csv() {
         let k = Lini + Ldes + Lmed + Lfin;
         let ciclo = Lini + Ldes + Lmed + Lfin;
         let nr = longitud;
-        let dia = 12; //dia que inicia el balance. Se asume que inicia en capacidad de campo
+        let dia = 1; //dia que inicia el balance. Se asume que inicia en capacidad de campo
         let con = 1;
         //Crear variables de dataframe en JS
         //let x = matrix(data = NA, nrow = nr, ncol = 19, byrow = FALSE, dimnames = NULL)
         //let R = data.frame(x)
         //Llenar matriz
         for (var j = con - 1; j < nr; j++) {
-
             J.push(dia + j);
             //Calculo de la longitud de raíz
             if (J[j] <= Jini) {
@@ -200,19 +277,25 @@ function Leer_csv() {
             if (J[j] <= Lini) {
                 Kc.push(Kcini);
             } else if (J[j] <= (Lini + Ldes)) {
-                let num_aux = Kcini + ((J[j] - Lini) / Ldes) * (Kcmed - Kcini);
+                var num_aux = Kcini + (((J[j] - Lini) / Ldes) * (Kcmed - Kcini));
                 num_aux = Math.round(num_aux * 100) / 100;
                 Kc.push(num_aux);
             } else if (J[j] <= (Lini + Ldes + Lmed)) {
                 Kc.push(Kcmed);
             } else {
-                let num_aux = Kcmed + ((J[j] - (Lini + Ldes + Lmed)) / Lfin) * (Kcfin - Kcmed);
+                var num_aux = Kcmed + (((J[j] - (Lini + Ldes + Lmed)) / Lfin) * (Kcfin - Kcmed));
                 num_aux = Math.round(num_aux * 100) / 100;
                 Kc.push(num_aux);
             }
 
+            let num_aux_2 = 0;
+            //Cálculo de la evapotranspiración del cultivo ajustado ETcaj
+            num_aux_2 = Eto_Calc_mm_d_1[j] * Kc[j];
+            num_aux_2 = Math.round(num_aux_2 * 100) / 100;
+            ETcaj_mm.push(num_aux_2);
+
             //Cálculo de agua disponible total ADT
-            let num_aux_2 = ADT * Longitud_raiz_m[j];
+            num_aux_2 = ADT * Longitud_raiz_m[j];
             num_aux_2 = Math.round(num_aux_2 * 100) / 100;
             ADT_mm.push(num_aux_2);
 
@@ -222,13 +305,15 @@ function Leer_csv() {
                 if (Longitud_raiz_m[j] == 5) {
                     num_aux_3 = pini;
                 } else {
-                    num_aux_3 = Math.max(pini + (0.04 * (5 - Etc_mm_d_1[j])), 0.1);
+                    //num_aux_3 = Math.max(pini + (0.04 * (5 - Etc_mm_d_1[j])), 0.1);
+                    num_aux_3 = Math.max(pini + (0.04 * (5 - ETcaj_mm[j])), 0.1);
                 }
             } else {
                 if (Longitud_raiz_m[j] == 5) {
                     num_aux_3 = pdes;
                 } else {
-                    num_aux_3 = Math.max(pdes + (0.04 * (5 - Etc_mm_d_1[j])), 0.1);
+                    //num_aux_3 = Math.max(pdes + (0.04 * (5 - Etc_mm_d_1[j])), 0.1);
+                    num_aux_3 = Math.max(pdes + (0.04 * (5 - ETcaj_mm[j])), 0.1);
                 }
             }
             p_aj_mm.push(num_aux_3);
@@ -262,10 +347,11 @@ function Leer_csv() {
             P_efec_mm.push(num_aux_2);
             //Cálculo del coeficiente de estrÃ©s hidrico Ks
             Ks.push(1);
-            //Cálculo de la evapotranspiración del cultivo ajustado ETcaj
-            num_aux_2 = Etc_mm_d_1[j];
-            num_aux_2 = Math.round(num_aux_2 * 100) / 100;
-            ETcaj_mm.push(num_aux_2);
+
+            //Cálculo de la evapotranspiración del cultivo ajustado ETcaj 2
+            //num_aux_2 = Etc_mm_d_1[j];
+            //num_aux_2 = Math.round(num_aux_2 * 100) / 100;
+            //ETcaj_mm.push(num_aux_2);
 
             //Cálculo de la percolación profunda
             if (j == 0) {
@@ -296,7 +382,6 @@ function Leer_csv() {
                 num_aux_2 = Math.round(num_aux_2 * 100) / 100;
                 Dr_Final_mm.push(num_aux_2);
             }
-            Fecha.push(seq_fechas[j].substring(0, 16));
             P_mm.push(Precipitacion_mm[j]);
             Eto_mm.push(Eto_Calc_mm_d_1[j]);
         }
@@ -318,19 +403,19 @@ function Leer_csv() {
     }
 }
 
-function tabla_presentar() {
-    var array = archivojson();
-    for (var i = 0; i < array.length; i++) {
-        document.getElementById("Tabla_balance").innerHTML =
-            document.getElementById("Tabla_balance").innerHTML + "<br>" +
-            array[i]["Fecha"] + " " +
-            array[i]["Eto_Calc_mm_d-1"] + " " +
-            array[i]["Etc_mm_d-1"] + " " + array[i]["Precipitacion (mm)"];
-    }
-    obj.Fecha;
-}
-
 function graficar() {
+    //Bloquear interfaz
+    document.getElementById("Fechao").disabled = true;
+    document.getElementById("dias").disabled = true;
+    document.getElementById("CC").disabled = true;
+    document.getElementById("PMP").disabled = true;
+    document.getElementById("DA").disabled = true;
+    document.getElementById("Kco").disabled = true;
+    document.getElementById("Kcm").disabled = true;
+    document.getElementById("Kcf").disabled = true;
+    document.getElementById("Fa1").disabled = true;
+    document.getElementById("dias").disabled = true;
+
     Leer_csv();
 
     for (let i = 0; i < Perc_Prof_mm.length; i++) {
@@ -487,7 +572,7 @@ function graficar() {
         yaxis: { title: 'Lámina (mm)' },
         colorbar: true,
         barmode: 'relative',
-        title: 'Grafica de balance hídrico',
+        title: 'Balance hídrico',
         width: 500,
     };
     var l2 = {
@@ -495,58 +580,39 @@ function graficar() {
         yaxis: { title: 'Lámina (mm)' },
         colorbar: true,
         barmode: 'relative',
-        title: 'Grafica de balance hídrico',
-        width: 600
+        title: 'Balance hídrico',
+        width: 1000
     };
     // Mostrar
     Plotly.newPlot("Vista_prev", datos, l1);
     Plotly.newPlot("Suelo_canva", datos, l2);
 
+    var tam_Lam = Lamina_bruta_mm.length;
+    var valor_salida = Lamina_bruta_mm[tam_Lam - 1];
 
-    let subgrafica = [];
-    let dia_rie = [];
-    for (let i = 0; i < Lamina_bruta_mm.length; i++) {
-        if (Lamina_bruta_mm[i] > 0) {
-            dia_rie.push(Fechas[i].toString() + " Dia(" + J[i].toString() + ")"); //("Dia" + J[i].toString());
-            subgrafica.push(Lamina_bruta_mm[i]);
-        }
+    var Fecha_siem_5 = document.getElementById("Fechao").value;
+    var Fecha_siem_6 = new Date(Fecha_siem_5);
+    Fecha_siem_6.setDate(Fecha_siem_6.getDate() + tam_Lam + 1);
+    Fecha_siem_6 = formato_fecha(Fecha_siem_6).toString();
+
+    var Fecha_siem_7 = new Date();
+    Fecha_siem_7 = formato_fecha(Fecha_siem_7).toString();
+
+    if (valor_salida > 0 && (Fecha_siem_6 == Fecha_siem_7)) {
+        $('#modal').modal('show');
+        document.getElementById("Aviso_modal").innerHTML = "El dia de hoy debe aplicar una lamina bruta de " + valor_salida + " mm.";
     }
-
-    var G8 = [{
-        x: dia_rie,
-        y: subgrafica,
-        name: 'R',
-        type: 'bar',
-        marker: {
-            color: 'rgb(100,149,237)',
-            size: 2,
-            line: {
-                color: 'rgb(100,149,237)',
-                width: 2
-            }
-        }
-    }];
-
-    var l3 = {
-        xaxis: { title: 'Fecha' },
-        yaxis: { title: 'Lámina (mm)' },
-        colorbar: true,
-        barmode: 'relative',
-        title: 'Resumen del balance',
-        width: 300
-    };
-
-    Plotly.newPlot("Suelo_res", G8, l3);
 
     //Crear tabla
     let tab1 = document.getElementById("tab_reporte");
+    tab1.innerHTML = "";
+
     var tcab = document.createElement("thead");
     var tfot = document.createElement("tfoot");
     var tbod = document.createElement("tbody");
-
     //Rotulos cabeza
     var titulos = document.createElement("tr");
-    var lista_titulos = ["Fecha", "Dia", "Dr", "ETc", "Perc", "AFA", "ADT", "R", "P"];
+    var lista_titulos = ["Fecha", "Dia", "Prec", "ET0", "Dr", "ETc", "Perc", "AFA", "ADT", "R", "P"];
     for (let i = 0; i < lista_titulos.length; i++) {
         var celda = document.createElement("th");
         var textoCelda = document.createTextNode(lista_titulos[i]);
@@ -566,10 +632,10 @@ function graficar() {
     //Contenido
     for (let i = 0; i < J.length; i++) {
         var fila = document.createElement("tr");
-        for (let j = 0; j < 9; j++) {
+        for (let j = 0; j < 11; j++) {
             var celda = document.createElement("td");
             var textoCelda;
-            if (j == 0) { textoCelda = document.createTextNode(Fecha[i].toString()); } else if (j == 1) { textoCelda = document.createTextNode(J[i].toString()); } else if (j == 2) { textoCelda = document.createTextNode(Dr_Final_mm[i].toString()); } else if (j == 3) { textoCelda = document.createTextNode(ETcaj_mm[i].toString()); } else if (j == 4) { textoCelda = document.createTextNode(Perc_Prof_mm[i].toString()); } else if (j == 5) { textoCelda = document.createTextNode(AFA_mm[i].toString()); } else if (j == 6) { textoCelda = document.createTextNode(ADT_mm[i].toString()); } else if (j == 7) { textoCelda = document.createTextNode(Lamina_bruta_mm[i].toString()); } else if (j == 8) { textoCelda = document.createTextNode(P_efec_mm[i].toString()); }
+            if (j == 0) { textoCelda = document.createTextNode(Fechas[i].toString()); } else if (j == 1) { textoCelda = document.createTextNode(J[i].toString()); } else if (j == 2) { textoCelda = document.createTextNode(Precipitacion_mm[i].toString()); } else if (j == 3) { textoCelda = document.createTextNode(Eto_Calc_mm_d_1[i].toString()); } else if (j == 4) { textoCelda = document.createTextNode(Dr_Final_mm[i].toString()); } else if (j == 5) { textoCelda = document.createTextNode(ETcaj_mm[i].toString()); } else if (j == 6) { textoCelda = document.createTextNode(Perc_Prof_mm[i].toString()); } else if (j == 7) { textoCelda = document.createTextNode(AFA_mm[i].toString()); } else if (j == 8) { textoCelda = document.createTextNode(ADT_mm[i].toString()); } else if (j == 9) { textoCelda = document.createTextNode(Lamina_bruta_mm[i].toString()); } else if (j == 10) { textoCelda = document.createTextNode(P_efec_mm[i].toString()); }
             celda.appendChild(textoCelda);
             fila.appendChild(celda);
         }
@@ -585,6 +651,18 @@ function graficar() {
     tab1.setAttribute("class", "table table-bordered");
     tab1.setAttribute("width", "100%");
     tab1.setAttribute("cellspacing", "0");
+
+    //Desbloquear interfaz
+    if (opc1 != 1) { document.getElementById("Fechao").disabled = false; }
+    document.getElementById("dias").disabled = false;
+    document.getElementById("CC").disabled = false;
+    document.getElementById("PMP").disabled = false;
+    document.getElementById("DA").disabled = false;
+    document.getElementById("Kco").disabled = false;
+    document.getElementById("Kcm").disabled = false;
+    document.getElementById("Kcf").disabled = false;
+    document.getElementById("Fa1").disabled = false;
+    document.getElementById("dias").disabled = false;
 }
 
 function Exportarcsv(filename) {

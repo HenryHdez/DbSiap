@@ -30,9 +30,11 @@
 
             <!-- Barra lateral -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15"></div>
-                <div class="sidebar-brand-text mx-3">Información Agroclimática</div>
+                <div class="sidebar-brand-text mx-1">
+                    <br> Estudio Agroclimático para el cultivo de papa
+                </div>
             </a>
+            <br>
 
             <!-- Divisor -->
             <hr class="sidebar-divider my-0">
@@ -42,39 +44,39 @@
                 Contenido
             </div>
 
-            <!-- Nav Item - Graficos -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Gráficas</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Seleccione una opción:</h6>
-                        <a class="collapse-item" href="templates/buttons.html">Balance hídrico</a>
-                        <!--<a class="collapse-item" href="templates/cards.html">Variable 2</a>-->
-                    </div>
-                </div>
-            </li>
-
             <!-- Nav Item - Mapas -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMapas" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-map"></i>
-                    <span>Mapas</span>
+                    <span>Caracterización climatica</span>
                 </a>
                 <div id="collapseMapas" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="./Presentacion_Clima.html">Presentación</a>
                         <a class="collapse-item" href="./brillo.html">Brillo solar</a>
-                        <a class="collapse-item" href="./Evotrans.html">Evotranspiración</a>
+                        <a class="collapse-item" href="./Evotrans.html">Evapotranspiración</a>
                         <a class="collapse-item" href="./Humedadrel.html">Humedad relativa</a>
                         <a class="collapse-item" href="./Precipita.html">Precipitación</a>
                         <a class="collapse-item" href="./Tempmax.html">Temperatura máxima</a>
                         <a class="collapse-item" href="./Tempmed.html">Temperatura media</a>
                         <a class="collapse-item" href="./Tempmin.html">Temperatura mínima</a>
-                        <a class="collapse-item" href="./Nino_nina.html">F. Niño y niña</a>
-                        <div class="collapse-divider" style="text-align: justify;">Aquí encontrará seis (6) variables y su representación cartográfica en el departamento de cundinamarca.</div>
+                        <a class="collapse-item" href="./Nino_nina.html">Variabilidad climática</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Graficos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Modelos</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Seleccione una opción:</h6>
+                        <a class="collapse-item" href="./Balancehidri.html">Balance hídrico</a>
+                        <!--<a class="collapse-item" href="templates/cards.html">Variable 2</a>-->
                     </div>
                 </div>
             </li>
@@ -112,65 +114,94 @@
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <!--Titulo y menú del gráfico-->
-                                    <h6 class="m-0 font-weight-bold text-primary" style="text-align: center; font-size:180%;">Fenómeno del niño y la niña</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" style="text-align: center; font-size:180%;">Variabilidad climática</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        <a href="./static/img/Fem/Nino_nina.zip" class="btn btn-info btn-circle btn-sm">
+                                            <i class="fas fa-download"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Opción de descarga:</div>
-                                            <a class="dropdown-item" href="./static/img/Fem/Nino_nina.zip">Imágenes</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--Menu de selección-->
-                    <div class="card-body text-info" style="text-align: center;">
-                        <div style="text-align: center; font-size:120%;">
-                            <div>
-                                Seleccione las opciones que desee visualizar (zoom
-                                <a onclick="zoom_in()" class="btn btn-info btn-circle btn-sm">
-                                    <i class="fas fa-plus-circle"></i>
-                                </a>
-                                <a onclick="zoom_out()" class="btn btn-info btn-circle btn-sm">
-                                    <i class="fas fa-minus-circle"></i>
-                                </a>
-                                o scroll del mouse sobre la imágen).
-                            </div>
-                            <span>
-                                <br>
-                            </span>
-                            <div style="text-align: center;">
-                                <input type="checkbox" id="Estado_n" name="Estado_n" onclick="seleccion_nio()" checked>
-                                <label for="Estado_n">Neutro</label>
-                                <select id="Opc_neu" width="25%" style="width: 25%" style="text-align: center; font-size:80%;">
-                                    <option value = 0 selected>Trimestre: diciembre a febrero</option>
-                                    <option value = 1>Trimestre: marzo a mayo</option>
-                                    <option value = 2>Trimestre: junio a agosto</option>
-                                    <option value = 3>Trimestre: septiembre a noviembre</option>
-                                </select>
-                                <input type="checkbox" id="Nino_n" name="Nino_n" onclick="seleccion_nio()">
-                                <label for="Nino_n">Niño</label>
-                                <select id="Opc_nio" width="25%" style="width: 25%" style="text-align: center; font-size:80%;">
-                                    <option value = 0 selected>Trimestre: diciembre a febrero</option>
-                                    <option value = 1>Trimestre: marzo a mayo</option>
-                                    <option value = 2>Trimestre: junio a agosto</option>
-                                    <option value = 3>Trimestre: septiembre a noviembre</option>
-                                </select>
-                                <input type="checkbox" id="Nina_n" name="Nina_n" onclick="seleccion_nio()">
-                                <label for="Nina_n">Niña</label>
-                                <select id="Opc_nia" width="25%" style="width: 25%" style="text-align: center; font-size:80%;">
-                                    <option value = 0 selected>Trimestre: diciembre a febrero</option>
-                                    <option value = 1>Trimestre: marzo a mayo</option>
-                                    <option value = 2>Trimestre: junio a agosto</option>
-                                    <option value = 3>Trimestre: septiembre a noviembre</option>
-                                </select>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-P1-tab" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-P1" aria-selected="true" style="text-align: center; font-size:140%;">Descripción</a>
+                            <a class="nav-item nav-link" id="nav-P2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-P2" aria-selected="false" style="text-align: center; font-size:140%;">Galería</a>
+                        </div>
+                    </nav>
+
+                    <!--Mapas por mes del año-->
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-P1-tab">
+                            <div class="card border-info mb-3">
+                                <div class="card-body text-info" style="text-align: justify; font-size:120%;">
+                                    <p>
+                                        En este apartado usted podrá consultar cual podría ser el comportamiento probable de la precipitación cuando se presenta un evento El Niño/La Niña en la provincia de Sabana de Occidente. Lo primero que debe hacer es seleccionar el fenómeno a consultar
+                                        (El Niño o La Niña), o simplemente escoger el periodo Neutro como punto de referencia (un periodo se considera Neutro cuando no se presenta El Niño o La Niña). A continuación, se hace la selección del periodo que
+                                        se quiera consultar; se debe tener en cuenta que el análisis fue generado por trimestres, coincidentes con las temporadas secas y de lluvias en la región (<b>DEF</b>, Trimestre
+                                        <b>D</b>iciembre,
+                                        <b>E</b>nero y <b>F</b>ebrero; <b>MAM</b>, Trimestre <b>M</b>arzo,
+                                        <b>A</b>bril y <b>M</b>ayo; <b>JJA</b>, Trimestre <b>J</b>unio, <b>J</b>ulio y <b>A</b>gosto; <b>SON</b> Trimestre
+                                        <b>S</b>eptiembre, <b>O</b>ctubre y <b>N</b>oviembre). Finalmente, la paleta de colores indica el intervalo de probabilidad en el que la precipitación se altera.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <canvas id="Fenom" width="1000" height="1200">Su navegador no permite visualizar el gráfico.</canvas>
+
+                        <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-P2-tab">
+                            <div class="card border-info mb-3">
+                                <div class="card-body text-info" style="text-align: center;">
+                                    <div style="text-align: center; font-size:120%;">
+                                        <div>
+                                            Seleccione al menos una opción (zoom
+                                            <a onclick="zoom_in()" class="btn btn-info btn-circle btn-sm">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </a>
+                                            <a onclick="zoom_out()" class="btn btn-info btn-circle btn-sm">
+                                                <i class="fas fa-minus-circle"></i>
+                                            </a>
+                                            o scroll del mouse sobre la imágen para redimensionar).
+                                        </div>
+                                        <span>
+                                        <br>
+                                    </span>
+                                        <div style="text-align: center;">
+                                            <input type="checkbox" id="Estado_n" name="Estado_n" onclick="seleccion_nio()" checked>
+                                            <label for="Estado_n">Neutro</label>
+                                            <select id="Opc_neu" width="20%" style="width: 20%" style="text-align: center; font-size:80%;">
+                                            <option value = 0 selected>Trimestre: diciembre a febrero</option>
+                                            <option value = 1>Trimestre: marzo a mayo</option>
+                                            <option value = 2>Trimestre: junio a agosto</option>
+                                            <option value = 3>Trimestre: septiembre a noviembre</option>
+                                        </select>
+                                            <input type="checkbox" id="Nino_n" name="Nino_n" onclick="seleccion_nio()">
+                                            <label for="Nino_n">El niño</label>
+                                            <select id="Opc_nio" width="20%" style="width: 20%" style="text-align: center; font-size:80%;">
+                                            <option value = 0 selected>Trimestre: diciembre a febrero</option>
+                                            <option value = 1>Trimestre: marzo a mayo</option>
+                                            <option value = 2>Trimestre: junio a agosto</option>
+                                            <option value = 3>Trimestre: septiembre a noviembre</option>
+                                        </select>
+                                            <input type="checkbox" id="Nina_n" name="Nina_n" onclick="seleccion_nio()">
+                                            <label for="Nina_n">La niña</label>
+                                            <select id="Opc_nia" width="20%" style="width: 20%" style="text-align: center; font-size:80%;">
+                                            <option value = 0 selected>Trimestre: diciembre a febrero</option>
+                                            <option value = 1>Trimestre: marzo a mayo</option>
+                                            <option value = 2>Trimestre: junio a agosto</option>
+                                            <option value = 3>Trimestre: septiembre a noviembre</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <canvas id="Fenom" width="1000" height="1200">Su navegador no permite visualizar el gráfico.</canvas>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
                 </div>
                 <!-- Fin del contenedor principal -->
             </div>

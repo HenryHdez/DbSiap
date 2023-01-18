@@ -1,9 +1,12 @@
 let conta_ima = 0;
+var intervalo = 0;
+var intervalo2 = 0;
 let puntero_ima = 0;
 let puntero_ima_trim = 0;
 var zoom = 0.2518041049471737;
 let Top_x = 30;
 let Top_y = 30;
+let bandera_ani = 0;
 let mem_cuenta = 0;
 var imgInstance = 0;
 var imgInstance_1 = 0;
@@ -40,7 +43,15 @@ var Arr_Compl_trim = ["promedio_anual.jpg", "trimestre_diciembre_enero_febrero.j
 ];
 
 function Rotarimagen(num_uni) {
-    intervalo = setInterval(graficar, 250, num_uni);
+    if (bandera_ani == 0) {
+        intervalo = setInterval(graficar, 500, num_uni);
+        bandera_ani = 1;
+    }
+}
+
+function Cerrar_anima() {
+    clearInterval(intervalo);
+    bandera_ani = 0;
 }
 
 function graficar(num_uni) {
@@ -112,8 +123,6 @@ function Rotarimagen_izquierda_trim(num_uni) {
 function Rotarimagen_select_trim(num_uni) {
     puntero_ima_trim = document.getElementById("Opc_mes_ano").value;
     document.getElementById("Ima_estatica_trim").src = base + carpeta[num_uni] + unidad[num_uni] + Arr_Compl_Mes[puntero_ima_trim];
-
-
 }
 
 function abreModalImagen(elementoImg) {
@@ -127,7 +136,7 @@ function comprobar_mapas() {
 
 
 function Rotarimagen_nino() {
-    intervalo = setInterval(graficar_3, 100);
+    intervalo2 = setInterval(graficar_3, 100);
 }
 
 function seleccion_nio() {
@@ -148,7 +157,7 @@ function graficar_3() {
     let neu_sele = document.getElementById("Estado_n").checked;
     let nio_sele = document.getElementById("Nino_n").checked;
     let nia_sele = document.getElementById("Nina_n").checked;
-    let Etique = ['DEF_', 'JJA_', 'MAM_', 'SON_'];
+    let Etique = ['DEF_', 'MAM_', 'JJA_', 'SON_'];
 
     if (neu_sele == false && nio_sele == false && nia_sele == false) {
         document.getElementById("Estado_n").checked = true;
