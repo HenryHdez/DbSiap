@@ -215,6 +215,7 @@ function Leer_csv() {
                 }
                 Fechas.push(Fecha_siem_3);
                 Eto_Calc_mm_d_1.push(memoria_ETO);
+                console.log(Eto_Calc_mm_d_1)
                 Precipitacion_mm.push(memoria_Prec);
             }
         }
@@ -316,6 +317,8 @@ function Leer_csv() {
                     num_aux_3 = Math.max(pdes + (0.04 * (5 - ETcaj_mm[j])), 0.1);
                 }
             }
+            //num_aux_3 = Math.round(num_aux_3 * 100) / 100;
+
             p_aj_mm.push(num_aux_3);
 
             //Cálculo de agua fácilmente aprovechable AFA
@@ -619,7 +622,6 @@ function graficar() {
         celda.appendChild(textoCelda);
         titulos.appendChild(celda);
     }
-
     //Rotulos pie de pagina
     var piespag = document.createElement("tr");
     for (let i = 0; i < lista_titulos.length; i++) {
